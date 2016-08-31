@@ -1,0 +1,38 @@
+{
+  "name": "grunt-sass-replace",
+  "description": "replaces sass declarations with grunt",
+  "version": "0.1.0",
+  "homepage": "https://github.com/eliranmal/grunt-sass-replace",
+  "author": {
+    "name": "eliranmal",
+    "email": "eliranmal@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/eliranmal/grunt-sass-replace.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eliranmal/grunt-sass-replace/issues"
+  },
+  "licenses": [
+    {
+      "type": "none",
+      "url": "https://github.com/eliranmal/grunt-sass-replace/blob/master/LICENSE-none"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
