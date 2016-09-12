@@ -1,0 +1,28 @@
+/*
+ * compiled to sass
+ */
+@import "foo.scss";
+@import "foo";
+
+/*
+ * compiled to css
+ */
+@import "foo.css";
+@import "foo" screen;
+@import "http://foo.com/bar";
+@import url(foo);
+// variable interpolation
+$family: unquote("Droid+Sans");
+@import url("http://fonts.googleapis.com/css?family=#{$family}");
+
+/*
+ * multiple files
+ */
+@import "rounded-corners", "text-shadow";
+
+/*
+ * nested
+ */
+#main {
+  @import "example";
+}

@@ -1,0 +1,6 @@
+$my-var: "foo";
+$my-default-var: "foo" !default;
+$my_var: "foo";
+$my_default_var: "foo" !default;
+$myVar: "foo";
+$myDefaultVar: "foo" !default;
