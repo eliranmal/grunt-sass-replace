@@ -17,8 +17,8 @@
   },
   "licenses": [
     {
-      "type": "none",
-      "url": "https://github.com/eliranmal/grunt-sass-replace/blob/master/LICENSE-none"
+      "type": "WTFPL",
+      "url": "https://github.com/eliranmal/grunt-sass-replace/blob/master/LICENSE.txt"
     }
   ],
   "engines": {

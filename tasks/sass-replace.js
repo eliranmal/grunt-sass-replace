@@ -3,7 +3,7 @@
  * https://github.com/eliranmal/grunt-sass-replace
  *
  * Copyright (c) 2016 eliranmal
- * Licensed under the none license.
+ * Licensed under the WTFPL license.
  */
 
 'use strict';
