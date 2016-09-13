@@ -89,4 +89,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2016 Eliran Malka Licensed under the WTFPL license.
+Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
