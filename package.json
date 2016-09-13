@@ -38,7 +38,9 @@
     "sass",
     "replace",
     "substitution",
-    "string"
+    "string",
+    "regex",
+    "css"
   ],
   "dependencies": {
     "grunt-string-replace": "^1.3.0"
