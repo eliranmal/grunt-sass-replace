@@ -29,21 +29,71 @@ module.exports = function (grunt) {
         },
 
         // Configuration to be run (and then tested).
-        sass_replace: {
-            default_options: {
-                options: {},
-                files: {
-                    'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-                }
-            },
-            custom_options: {
+        'sass-replace': {
+            'default-options': {
                 options: {
-                    separator: ': ',
-                    punctuation: ' !!!'
+                    variables: [
+                        {
+                            name: 'my-var',
+                            from: 'foo', // optional filter, omit to replace all matching names
+                            to: 'bar'
+                        },
+                        {
+                            name: 'my-default-var',
+                            from: 'foo', // optional filter, omit to replace all matching names
+                            to: 'bar'
+                        },
+                        {
+                            name: 'my_var',
+                            from: 'foo', // optional filter, omit to replace all matching names
+                            to: 'bar'
+                        },
+                        {
+                            name: 'my_default_var',
+                            from: 'foo', // optional filter, omit to replace all matching names
+                            to: 'bar'
+                        },
+                        {
+                            name: 'myVar',
+                            from: 'foo', // optional filter, omit to replace all matching names
+                            to: 'bar'
+                        },
+                        {
+                            name: 'myDefaultVar',
+                            from: 'foo', // optional filter, omit to replace all matching names
+                            to: 'bar'
+                        },
+                    ],
+                    //imports: [
+                    //    {
+                    //        from: 'foo/bar',
+                    //        to: 'foo/wat'
+                    //    }
+                    //]
                 },
-                files: {
-                    'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-                }
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['test/fixtures/**/*'],
+                        dest: 'tmp/default-options'
+                    }
+                ]
+                //files: {
+                //    //'tmp/default-options': 'test/fixtures/variables'
+                //    'tmp/default-options': ['test/fixtures/variables', 'test/fixtures/imports']
+                //    //'tmp/default-options': 'test/fixtures/imports'
+                //}
+                //},
+                //'custom-options': {
+                //    options: {
+                //        separator: ': ',
+                //        punctuation: ' !!!'
+                //    },
+                //    files: {
+                //        'tmp/custom-options': 'test/fixtures/variables'
+                //        //'tmp/custom-options': 'test/fixtures/imports'
+                //    }
             }
         },
 
@@ -64,7 +114,7 @@ module.exports = function (grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'sass_replace', 'nodeunit']);
+    grunt.registerTask('test', ['clean', 'sass-replace', 'nodeunit']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);

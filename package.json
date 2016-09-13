@@ -7,6 +7,7 @@
     "name": "eliranmal",
     "email": "eliranmal@gmail.com"
   },
+  "main": "tasks/sass-replace",
   "repository": {
     "type": "git",
     "url": "git://github.com/eliranmal/grunt-sass-replace.git"
@@ -33,6 +34,13 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
-  ]
+    "gruntplugin",
+    "sass",
+    "replace",
+    "substitution",
+    "string"
+  ],
+  "dependencies": {
+    "grunt-string-replace": "^1.3.0"
+  }
 }

@@ -1,0 +1,28 @@
+/*
+ * compiled to sass
+ */
+@import "bar.scss";
+@import "bar";
+
+/*
+ * compiled to css
+ */
+@import "bar.css";
+@import "bar" screen;
+@import "http://bar.com/bar";
+@import url(bar);
+// variable interpolation
+$family: unquote("Droid+Sans");
+@import url("http://wat.com/bar?family=#{$family}");
+
+/*
+ * multiple files
+ */
+@import "bar-bar", "bar-bar-bar";
+
+/*
+ * nested
+ */
+#main {
+  @import "bar";
+}

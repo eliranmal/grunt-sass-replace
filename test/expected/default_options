@@ -1,6 +1,0 @@
-$my-var: "bar";
-$my-default-var: "bar" !default;
-$my_var: "bar";
-$my_default_var: "bar" !default;
-$myVar: "bar";
-$myDefaultVar: "bar" !default;

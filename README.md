@@ -17,14 +17,14 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-sass-replace');
 ```
 
-## The "sass_replace" task
+## The 'sass-replace' task
 
 ### Overview
-In your project's Gruntfile, add a section named `sass_replace` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `sass-replace` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  sass_replace: {
+  'sass-replace': {
     options: {
       // Task-specific options go here.
     },
@@ -56,10 +56,10 @@ In this example, the default options are used to do something with whatever. So 
 
 ```js
 grunt.initConfig({
-  sass_replace: {
+  'sass-replace': {
     options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dest/default-options': ['src/testing', 'src/123'],
     },
   },
 });
@@ -70,13 +70,13 @@ In this example, custom options are used to do something else with whatever else
 
 ```js
 grunt.initConfig({
-  sass_replace: {
+  'sass-replace': {
     options: {
       separator: ': ',
       punctuation: ' !!!',
     },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dest/default-options': ['src/testing', 'src/123'],
     },
   },
 });

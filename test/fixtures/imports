@@ -13,16 +13,16 @@
 @import url(foo);
 // variable interpolation
 $family: unquote("Droid+Sans");
-@import url("http://fonts.googleapis.com/css?family=#{$family}");
+@import url("http://wat.com/foo?family=#{$family}");
 
 /*
  * multiple files
  */
-@import "rounded-corners", "text-shadow";
+@import "foo-foo", "foo-foo-foo";
 
 /*
  * nested
  */
 #main {
-  @import "example";
+  @import "foo";
 }
