@@ -29,98 +29,84 @@ module.exports = function (grunt) {
 
         // configuration to be run (and then tested).
         'sass-replace': {
-            'default-options': {
+            'variables_from-to': {
                 files: [
                     {
-                        expand: true,
+                        //expand: true,
                         flatten: true,
-                        src: ['test/fixtures/**/*'],
-                        dest: 'tmp/default-options'
+                        //src: ['test/fixtures/**/*'],
+                        src: 'test/fixtures/variables',
+                        dest: 'tmp/variables/from-to'
+                    }
+                ],
+                options: {
+                    variables: [
+                        {
+                            from: 'foo',
+                            to: 'bar'
+                        }
+                    ]
+                }
+            },
+            'variables_name-to': {
+                files: [
+                    {
+                        //expand: true,
+                        flatten: true,
+                        //src: ['test/fixtures/**/*'],
+                        src: 'test/fixtures/variables',
+                        dest: 'tmp/variables/name-to'
                     }
                 ],
                 options: {
                     variables: [
                         {
                             name: 'my-var',
-                            from: 'foo', // optional filter, omit to replace all matching names
                             to: 'bar'
                         },
                         {
                             name: 'my-default-var',
-                            from: 'foo', // optional filter, omit to replace all matching names
                             to: 'bar'
-                        },
-                        {
-                            name: 'my_var',
-                            from: 'foo', // optional filter, omit to replace all matching names
-                            to: 'bar'
-                        },
-                        {
-                            name: 'my_default_var',
-                            from: 'foo', // optional filter, omit to replace all matching names
-                            to: 'bar'
-                        },
-                        {
-                            name: 'myVar',
-                            from: 'foo', // optional filter, omit to replace all matching names
-                            to: 'bar'
-                        },
-                        {
-                            name: 'myDefaultVar',
-                            from: 'foo', // optional filter, omit to replace all matching names
-                            to: 'bar'
-                        },
-                    ],
-                    //imports: [
-                    //    {
-                    //        from: 'foo/bar',
-                    //        to: 'foo/wat'
-                    //    }
-                    //]
-                },
-                //files: {
-                //    //'tmp/default-options': 'test/fixtures/variables'
-                //    'tmp/default-options': ['test/fixtures/variables', 'test/fixtures/imports']
-                //    //'tmp/default-options': 'test/fixtures/imports'
-                //}
+                        }
+                    ]
+                }
             },
-            'custom-options': {
-                files: {
-                    'tmp/custom-options/variables': 'test/fixtures/variables'
-                    //'tmp/custom-options': 'test/fixtures/imports'
-                },
+            'variables_name-from-to': {
+                files: [
+                    {
+                        //expand: true,
+                        flatten: true,
+                        //src: ['test/fixtures/**/*'],
+                        src: 'test/fixtures/variables',
+                        dest: 'tmp/variables/name-from-to'
+                    }
+                ],
                 options: {
                     variables: [
                         {
                             name: 'my-var',
-                            from: 'foo', // optional filter, omit to replace all matching names
+                            from: 'foo',
                             to: 'bar'
                         },
                         {
                             name: 'my-default-var',
-                            from: 'foo', // optional filter, omit to replace all matching names
+                            from: 'foo',
                             to: 'bar'
-                        },
+                        }
+                    ]
+                }
+            },
+            'imports_from-to': {
+                files: {
+                    'tmp/imports/from-to': 'test/fixtures/imports'
+                    //'tmp/custom-options': 'test/fixtures/imports'
+                },
+                options: {
+                    imports: [
                         {
-                            name: 'my_var',
-                            from: 'foo', // optional filter, omit to replace all matching names
+                            from: 'foo',
                             to: 'bar'
-                        },
-                        {
-                            name: 'my_default_var',
-                            from: 'foo', // optional filter, omit to replace all matching names
-                            to: 'bar'
-                        },
-                        {
-                            name: 'myVar',
-                            from: 'foo', // optional filter, omit to replace all matching names
-                            to: 'bar'
-                        },
-                        {
-                            name: 'myDefaultVar',
-                            from: 'foo', // optional filter, omit to replace all matching names
-                            to: 'bar'
-                        },
+                        }
                     ]
                 }
             }

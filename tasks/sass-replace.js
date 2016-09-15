@@ -51,12 +51,12 @@ module.exports = function (grunt) {
         var name, from, to,
             replacements = [];
         variables.forEach(function (v) {
-            name = v.name;
+            name = v.name || '\\S+'; // match at least one non-whitespace character
             from = v.from || '.*';
             to = v.to;
             replacements.push({
-                pattern: new RegExp('\\$' + name + ':\\s*["\']' + from + '["\'](.*);', 'g'),
-                replacement: '$' + name + ': "' + to + '"$1;'
+                pattern: new RegExp('(\\$' + name + ':\\s*["\'])' + from + '(["\'].*;)', 'g'),
+                replacement: '$1' + to + '$2'
             });
         });
         return replacements;
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
             from = i.from;
             to = i.to;
             replacements.push({
-                // todo - account for all cases in 'imports' fixture
+                // todo - account for all cases from the 'imports' fixture
                 pattern: new RegExp('@import\\s*["\']' + from + '["\'].*;', 'g'),
                 replacement: '@import "' + to + '";'
             });

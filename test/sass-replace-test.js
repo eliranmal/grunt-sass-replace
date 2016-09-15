@@ -23,26 +23,40 @@ var grunt = require('grunt');
  */
 
 exports['sass-replace'] = {
+
     setUp: function (done) {
         // setup here if necessary
         done();
     },
-    defaultOptions: function (test) {
+
+    variablesFromTo: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/default-options/variables');
-        var expected = grunt.file.read('test/expected/default-options/variables');
-        test.equal(actual, expected, 'should replace sass variable values');
+        var actual = grunt.file.read('tmp/variables/from-to');
+        var expected = grunt.file.read('test/expected/variables/from-to');
+        test.equal(actual, expected, 'should replace sass variable values, filtering by variable old value');
 
         test.done();
     },
-    customOptions: function (test) {
+
+    variablesNameTo: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/custom-options/variables');
-        var expected = grunt.file.read('test/expected/custom-options/variables');
-        test.equal(actual, expected, 'should replace sass variable values using custom options (e.g. exclude regex?)');
+        var actual = grunt.file.read('tmp/variables/name-to');
+        var expected = grunt.file.read('test/expected/variables/name-to');
+        test.equal(actual, expected, 'should replace sass variable values, filtering by variable name');
+
+        test.done();
+    },
+
+    variablesNameFromTo: function (test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/variables/name-from-to');
+        var expected = grunt.file.read('test/expected/variables/name-from-to');
+        test.equal(actual, expected, 'should replace sass variable values, filtering by variable name and old value');
 
         test.done();
     }
+
 };
