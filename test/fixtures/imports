@@ -9,10 +9,11 @@
  */
 @import "foo.css";
 @import "foo" screen;
-@import "http://foo.com/bar";
+@import "http://wat.com/foo";
+@import "http://wat.tha.fuck.com/foo";
 @import url(foo);
+@import url("foo");
 // variable interpolation
-$family: unquote("Droid+Sans");
 @import url("http://wat.com/foo?family=#{$family}");
 
 /*

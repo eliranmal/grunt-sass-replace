@@ -106,6 +106,34 @@ module.exports = function (grunt) {
                         {
                             from: 'foo',
                             to: 'bar'
+                        },
+                        {
+                            from: 'foo.css',
+                            to: 'bar.css'
+                        },
+                        {
+                            from: 'foo.scss',
+                            to: 'bar.scss'
+                        },
+                        {
+                            from: 'http://wat.com/foo',
+                            to: 'http://wat.com/bar'
+                        },
+                        {
+                            from: 'http://wat.tha.fuck.com/foo',
+                            to: 'http://wat.tha.fuck.com/bar'
+                        },
+                        {
+                            from: 'http://wat.com/foo?family=#{$family}',
+                            to: 'http://wat.com/bar?family=#{$family}'
+                        },
+                        {
+                            from: 'foo-foo',
+                            to: 'bar-bar'
+                        },
+                        {
+                            from: 'foo-foo-foo',
+                            to: 'bar-bar-bar'
                         }
                     ]
                 }

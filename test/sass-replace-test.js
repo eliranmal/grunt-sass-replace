@@ -57,6 +57,16 @@ exports['sass-replace'] = {
         test.equal(actual, expected, 'should replace sass variable values, filtering by variable name and old value');
 
         test.done();
+    },
+
+    importsFromTo: function (test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/imports/from-to');
+        var expected = grunt.file.read('test/expected/imports/from-to');
+        test.equal(actual, expected, 'should replace sass import values, filtering by old value');
+
+        test.done();
     }
 
 };
