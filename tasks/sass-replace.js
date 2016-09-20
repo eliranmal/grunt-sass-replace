@@ -66,15 +66,23 @@ module.exports = function (grunt) {
         var from, to,
             replacements = [];
         imports.forEach(function (i) {
-            from = i.from;
+            from = asRegex(i.from);
             to = i.to;
             replacements.push({
-                // todo - account for all cases from the 'imports' fixture
-                pattern: new RegExp('@import\\s*["\']' + from + '["\'].*;', 'g'),
-                replacement: '@import "' + to + '";'
+                // harness non-capturing groups (:?) to allow for optional url("") and to handle optional surrounding quotes
+                pattern: new RegExp('(@import\\s+(?:url\\()*["\']*|["\'])' + from + '(["\']|(?:["\']*\\)).*;)', 'g'),
+                replacement: '$1' + to + '$2'
             });
         });
         return replacements;
+    }
+
+    function asRegex(str) {
+        var result;
+        result = str.replace(/["'\*\.\-\?\$\{}]/g, function (match) {
+            return '\\' + match;
+        });
+        return result;
     }
 
 };
