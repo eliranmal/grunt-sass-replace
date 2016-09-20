@@ -10,6 +10,7 @@
 @import "bar.css";
 @import "bar" screen;
 @import "http://wat.com/bar";
+@import "http://wat.tha.fuck.com/bar";
 @import url(bar);
 @import url("bar");
 // variable interpolation
