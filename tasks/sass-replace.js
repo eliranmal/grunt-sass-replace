@@ -78,11 +78,7 @@ module.exports = function (grunt) {
     }
 
     function asRegex(str) {
-        var result;
-        result = str.replace(/["'\*\.\-\?\$\{}]/g, function (match) {
-            return '\\' + match;
-        });
-        return result;
+        return str.replace(/(["'\*\.\-\?\$\{}])/g, '\\$1');
     }
 
 };
