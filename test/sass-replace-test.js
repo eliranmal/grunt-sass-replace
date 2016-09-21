@@ -67,6 +67,16 @@ exports['sass-replace'] = {
         test.equal(actual, expected, 'should replace sass import values, filtering by old value');
 
         test.done();
+    },
+
+    importsNoop: function (test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/imports/noop');
+        var expected = grunt.file.read('test/fixtures/imports');
+        test.equal(actual, expected, 'should not replace anything, input file should be equal to output file');
+
+        test.done();
     }
 
 };

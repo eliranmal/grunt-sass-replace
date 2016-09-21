@@ -1,6 +1,6 @@
 # grunt-sass-replace
 
-> replaces sass declarations
+> replaces sass values
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`

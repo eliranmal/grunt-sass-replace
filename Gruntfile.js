@@ -99,7 +99,6 @@ module.exports = function (grunt) {
             'imports_from-to': {
                 files: {
                     'tmp/imports/from-to': 'test/fixtures/imports'
-                    //'tmp/custom-options': 'test/fixtures/imports'
                 },
                 options: {
                     imports: [
@@ -136,6 +135,11 @@ module.exports = function (grunt) {
                             to: 'bar-bar-bar'
                         }
                     ]
+                }
+            },
+            'no_options': {
+                files: {
+                    'tmp/imports/noop': 'test/fixtures/imports'
                 }
             }
         },
