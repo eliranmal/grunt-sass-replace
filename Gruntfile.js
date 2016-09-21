@@ -96,6 +96,11 @@ module.exports = function (grunt) {
                     ]
                 }
             },
+            'variables_noop': {
+                files: {
+                    'tmp/variables/noop': 'test/fixtures/variables'
+                }
+            },
             'imports_from-to': {
                 files: {
                     'tmp/imports/from-to': 'test/fixtures/imports'
@@ -137,9 +142,110 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            'no_options': {
+            'imports_noop': {
                 files: {
                     'tmp/imports/noop': 'test/fixtures/imports'
+                }
+            },
+            'mixed_imports': {
+                files: {
+                    'tmp/mixed/imports': 'test/fixtures/mixed'
+                },
+                options: {
+                    imports: [
+                        {
+                            from: 'foo',
+                            to: 'bar'
+                        },
+                        {
+                            from: 'foo.css',
+                            to: 'bar.css'
+                        },
+                        {
+                            from: 'foo.scss',
+                            to: 'bar.scss'
+                        },
+                        {
+                            from: 'http://wat.com/foo',
+                            to: 'http://wat.com/bar'
+                        },
+                        {
+                            from: 'http://wat.tha.fuck.com/foo',
+                            to: 'http://wat.tha.fuck.com/bar'
+                        },
+                        {
+                            from: 'http://wat.com/foo?family=#{$family}',
+                            to: 'http://wat.com/bar?family=#{$family}'
+                        },
+                        {
+                            from: 'foo-foo',
+                            to: 'bar-bar'
+                        },
+                        {
+                            from: 'foo-foo-foo',
+                            to: 'bar-bar-bar'
+                        }
+                    ]
+                }
+            },
+            'mixed_variables': {
+                files: {
+                    'tmp/mixed/variables': 'test/fixtures/mixed'
+                },
+                options: {
+                    variables: [
+                        {
+                            from: 'foo',
+                            to: 'bar'
+                        }
+                    ]
+                }
+            },
+            'mixed_all': {
+                files: {
+                    'tmp/mixed/all': 'test/fixtures/mixed'
+                },
+                options: {
+                    variables: [
+                        {
+                            from: 'foo',
+                            to: 'bar'
+                        }
+                    ],
+                    imports: [
+                        {
+                            from: 'foo',
+                            to: 'bar'
+                        },
+                        {
+                            from: 'foo.css',
+                            to: 'bar.css'
+                        },
+                        {
+                            from: 'foo.scss',
+                            to: 'bar.scss'
+                        },
+                        {
+                            from: 'http://wat.com/foo',
+                            to: 'http://wat.com/bar'
+                        },
+                        {
+                            from: 'http://wat.tha.fuck.com/foo',
+                            to: 'http://wat.tha.fuck.com/bar'
+                        },
+                        {
+                            from: 'http://wat.com/foo?family=#{$family}',
+                            to: 'http://wat.com/bar?family=#{$family}'
+                        },
+                        {
+                            from: 'foo-foo',
+                            to: 'bar-bar'
+                        },
+                        {
+                            from: 'foo-foo-foo',
+                            to: 'bar-bar-bar'
+                        }
+                    ]
                 }
             }
         },

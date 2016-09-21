@@ -1,0 +1,36 @@
+$my-var: "foo";
+$my-default-var: "foo" !default;
+$my_var: "foo";
+$my_default_var: "foo" !default;
+$myVar: "foo";
+$myDefaultVar: "foo"   !default;
+
+/*
+ * compiled to sass
+ */
+@import "bar.scss";
+@import "bar";
+
+/*
+ * compiled to css
+ */
+@import "bar.css";
+@import "bar" screen;
+@import "http://wat.com/bar";
+@import "http://wat.tha.fuck.com/bar";
+@import url(bar);
+@import url("bar");
+// variable interpolation
+@import url("http://wat.com/bar?family=#{$family}");
+
+/*
+ * multiple files
+ */
+@import "bar-bar", "bar-bar-bar";
+
+/*
+ * nested
+ */
+#main {
+  @import "bar";
+}
