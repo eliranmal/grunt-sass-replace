@@ -52,31 +52,66 @@ module.exports = function (grunt) {
 
 
     function variableReplacementBuilder(v) {
-        var name, from, to;
-        name = v.name || '\\S+'; // match at least one non-whitespace character
-        from = v.from || '.*';
-        if (!v.to) {
-            // todo - go defensive!
+        var pattern,
+            name = v.name,
+            from = v.from,
+            to = v.to;
+
+        if (isUndefined(name) && isUndefined(from)) {
+            grunt.log.errorlns('one of "name" or "from" must be defined in a variable replacement');
+            return false;
         }
-        to = v.to;
+
+        if (!isUndefined(name) && !isString(name)) {
+            grunt.log.errorlns('"name" must be a string in a variable replacement');
+            return false;
+        }
+
+        if (isUndefined(to)) {
+            grunt.log.errorlns('"to" must be defined in a variable replacement');
+            return false;
+        }
+
+        pattern = buildVariableReplacementPattern(from, name);
+
         return {
-            pattern: new RegExp('(\\$' + name + ':\\s*["\'])' + from + '(["\'].*;)', 'g'),
+            pattern: new RegExp(pattern, 'gm'),
             replacement: '$1' + to + '$2'
         };
     }
 
+    function buildVariableReplacementPattern(from, name) {
+        // todo - add option to preserve !default in variables
+        // todo - add option to pass regex as filter in the "name" field, e.g. name: /my[-_][vV]ar/
+        name = name ? asRegexString(name) : '\\S+'; // match at least one non-whitespace character
+        from = from ? asRegexString(from) : '.*';
+        return [
+            /**/    '^',                                // start line
+            /**/    '(',                                // start capture first group
+            /**/        '\\$',                          // name must start with $
+            /**/        name,                           //
+            /**/        ':\\s*["\']?',                  // the value's optional open quote
+            /**/    ')',                                // end capture first group
+            /**/    from,                               //
+            /**/    '(',                                // start capture second group
+            /**/        '["\']?\\s*',                   // the value's optional close quote
+            /**/        '(?:(?:!default\\s*;)|;)',      // allow for !default after value
+            /**/    ')',                                // end capture second group
+            /**/    '$'                                 // end line
+        ].join('');
+    }
+
     function importReplacementBuilder(i) {
         var pattern,
-            fromAsRegexString,
             from = i.from,
             to = i.to;
 
         if (!isString(from) || !isString(to)) {
+            grunt.log.errorlns('both "from" and "to" must be defined and of type string in an import replacement');
             return false;
         }
 
-        fromAsRegexString = asRegexString(from);
-        pattern = buildImportReplacementPattern(fromAsRegexString);
+        pattern = buildImportReplacementPattern(from);
 
         return {
             pattern: new RegExp(pattern, 'gm'),
@@ -85,9 +120,10 @@ module.exports = function (grunt) {
     }
 
     function buildImportReplacementPattern(from) {
+        from = asRegexString(from);
         return [
-            /**/    '^',                                                //
-            /**/    '(',                                                // start capture first group
+            /**/    '^',                                                // start line
+            /**/    '(',                                                // start group $1
             /**/        '\\s*',                                         // allow for indentation (e.g. for nested imports)
             ///**/        '@import\\s+',                                //
             /**/        '(?:',                                          //
@@ -96,22 +132,22 @@ module.exports = function (grunt) {
             /**/        ')',                                            //
             /**/        '(?:',                                          //
             /**/            '(?:',                                      //
-            /**/                'url\\(["\']?',                         //
+            /**/                'url\\(["\']?',                         // path may be surrounded with url(), with optional quotes
             /**/            ')',                                        //
             /**/            '|',                                        //
             /**/            '["\']',                                    //
             /**/        ')',                                            //
-            /**/    ')',                                                // end capture first group
+            /**/    ')',                                                // end group $1
             /**/    from,                                               //
-            /**/    '(',                                                // start capture second group
+            /**/    '(',                                                // start group $2
             /**/        '(?:',                                          //
-            /**/            '["\']|(?:["\']?\\))',                      //
+            /**/            '["\']|(?:["\']?\\))',                      // path may be surrounded with url(), with optional quotes
             /**/        ')',                                            //
             ///**/        '(?:[\\w\\s]*;)|,\\s?',                       // todo - handle " screen; AND ", "
             ///**/        '.*;',                                        //
             /**/        '.*',                                           //
-            /**/    ')',                                                // end capture second group
-            /**/    '$'                                                 //
+            /**/    ')',                                                // end group $2
+            /**/    '$'                                                 // end line
         ].join('');
 
         // original regex, for reference. todo - remove this!
@@ -136,7 +172,7 @@ module.exports = function (grunt) {
     }
 
     function asRegexString(str) {
-        return str.replace(/(["'\*\.\-\?\$\{}])/g, '\\$1');
+        return (str + '').replace(/(["'\*\.\-\?\$\{}])/g, '\\$1');
     }
 
     function stringify(json) {
@@ -150,6 +186,10 @@ module.exports = function (grunt) {
 
     function isString(val) {
         return val && typeof val === 'string';
+    }
+
+    function isUndefined(val) {
+        return typeof val === 'undefined';
     }
 
 };

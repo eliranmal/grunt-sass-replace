@@ -44,6 +44,18 @@ module.exports = function (grunt) {
                         {
                             from: 'foo',
                             to: 'bar'
+                        },
+                        {
+                            from: 10,
+                            to: '10%'
+                        },
+                        {
+                            from: 3.333,
+                            to: 6.666
+                        },
+                        {
+                            from: '10px',
+                            to: '20em'
                         }
                     ]
                 }
@@ -67,6 +79,14 @@ module.exports = function (grunt) {
                         {
                             name: 'my-default-var',
                             to: 'bar'
+                        },
+                        {
+                            name: 'my-num-var',
+                            to: '20'
+                        },
+                        {
+                            name: 'my-num-default-var',
+                            to: 20
                         }
                     ]
                 }
@@ -92,6 +112,16 @@ module.exports = function (grunt) {
                             name: 'my-default-var',
                             from: 'foo',
                             to: 'bar'
+                        },
+                        {
+                            name: 'my_num_var',
+                            from: 3.333,
+                            to: '6.666'
+                        },
+                        {
+                            name: 'myNumDefaultVar',
+                            from: '10px',
+                            to: '20em'
                         }
                     ]
                 }

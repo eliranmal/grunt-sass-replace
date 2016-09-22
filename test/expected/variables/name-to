@@ -1,6 +1,12 @@
-$my-var: "bar";
-$my-default-var: "bar" !default;
+$my-var: "bar;
+$my-default-var: "bar;
 $my_var: "foo";
 $my_default_var: "foo" !default;
 $myVar: "foo";
 $myDefaultVar: "foo"   !default;
+$my-num-var: 20;
+$my-num-default-var: 20;
+$my_num_var: 3.333;
+$my_num_default_var: 3.333 !default;
+$myNumVar: 10px;
+$myNumDefaultVar: 10px   !default;
