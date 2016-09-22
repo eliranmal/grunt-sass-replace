@@ -4,6 +4,12 @@ $my_var: "bar";
 $my_default_var: "bar" !default;
 $myVar: "bar";
 $myDefaultVar: "bar"   !default;
+$my-num-var: 10%;
+$my-num-default-var: 10% !default;
+$my_num_var: 6.666;
+$my_num_default_var: 6.666 !default;
+$myNumVar: 20em;
+$myNumDefaultVar: 20em   !default;
 
 /*
  * compiled to sass

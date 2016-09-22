@@ -227,6 +227,18 @@ module.exports = function (grunt) {
                         {
                             from: 'foo',
                             to: 'bar'
+                        },
+                        {
+                            from: 10,
+                            to: '10%'
+                        },
+                        {
+                            from: '3.333',
+                            to: 6.666
+                        },
+                        {
+                            from: '10px',
+                            to: '20em'
                         }
                     ]
                 }
@@ -240,6 +252,18 @@ module.exports = function (grunt) {
                         {
                             from: 'foo',
                             to: 'bar'
+                        },
+                        {
+                            from: 10,
+                            to: '10%'
+                        },
+                        {
+                            from: '3.333',
+                            to: 6.666
+                        },
+                        {
+                            from: '10px',
+                            to: '20em'
                         }
                     ],
                     imports: [

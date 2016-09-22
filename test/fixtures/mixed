@@ -4,6 +4,12 @@ $my_var: "foo";
 $my_default_var: "foo" !default;
 $myVar: "foo";
 $myDefaultVar: "foo"   !default;
+$my-num-var: 10;
+$my-num-default-var: 10 !default;
+$my_num_var: 3.333;
+$my_num_default_var: 3.333 !default;
+$myNumVar: 10px;
+$myNumDefaultVar: 10px   !default;
 
 /*
  * compiled to sass
