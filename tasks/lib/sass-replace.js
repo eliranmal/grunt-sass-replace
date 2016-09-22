@@ -51,6 +51,11 @@ module.exports = function (grunt) {
     }
 
 
+    // todo - add option to preserve !default in variables
+    // todo - (which means the default behavior will be to overwrite everything after the ':')
+
+    // todo - add option to pass regex as filter in the "name" field, e.g. name: /my[-_][vV]ar/
+
     function variableReplacementBuilder(v) {
         var pattern,
             name = v.name,
@@ -81,8 +86,6 @@ module.exports = function (grunt) {
     }
 
     function buildVariableReplacementPattern(from, name) {
-        // todo - add option to preserve !default in variables
-        // todo - add option to pass regex as filter in the "name" field, e.g. name: /my[-_][vV]ar/
         name = name ? asRegexString(name) : '\\S+'; // match at least one non-whitespace character
         from = from ? asRegexString(from) : '.*';
         return [
@@ -177,7 +180,7 @@ module.exports = function (grunt) {
 
     function stringify(json) {
         return JSON.stringify(json, function (key, val) {
-            if (val instanceof RegExp) {
+            if (isRegex(val)) {
                 return val.source;
             }
             return val;
@@ -186,6 +189,10 @@ module.exports = function (grunt) {
 
     function isString(val) {
         return val && typeof val === 'string';
+    }
+
+    function isRegex(val) {
+        return val instanceof RegExp;
     }
 
     function isUndefined(val) {
