@@ -16,15 +16,23 @@ module.exports = function (grunt) {
     grunt.task.loadTasks(path.resolve(__dirname, '../node_modules/grunt-string-replace/tasks'));
 
     grunt.registerMultiTask('sass-replace', 'replaces sass declarations', function () {
-        var files, options, stringReplaceConfig;
+        var files, options, replacements;
 
         // set default options
         options = this.options();
         files = this.files;
 
         if (files && options) {
-            stringReplaceConfig = sassReplace.getStringReplaceConfig(files, options);
-            grunt.config.set('string-replace', stringReplaceConfig);
+            replacements = sassReplace.asStringReplacements(options);
+
+            grunt.config.set('string-replace', {
+                sass: {
+                    files: files,
+                    options: {
+                        replacements: replacements
+                    }
+                }
+            });
             grunt.task.run('string-replace:sass');
         }
     });

@@ -9,7 +9,7 @@
 exports.init = function (grunt) {
     'use strict';
 
-    exports.getStringReplaceConfig = function (files, options) {
+    exports.asStringReplacements = function (options) {
         var replacements,
             variableReplacements = buildReplacements(options.variables, variableReplacementBuilder),
             importReplacements = buildReplacements(options.imports, importReplacementBuilder);
@@ -19,15 +19,8 @@ exports.init = function (grunt) {
         grunt.verbose.writeln('effective string-replace replacements:');
         grunt.verbose.writeln(stringify(replacements));
 
-        return {
-            sass: {
-                files: files,
-                options: {
-                    replacements: replacements
-                }
-            }
-        };
-    }
+        return replacements;
+    };
 
 
     // todo - add option to preserve !default in variables
@@ -144,9 +137,9 @@ exports.init = function (grunt) {
             arr.forEach(function (item) {
                 if (builder) {
                     replacement = builder(item);
-                }
-                if (replacement) {
-                    replacements.push(replacement);
+                    if (replacement) {
+                        replacements.push(replacement);
+                    }
                 }
             });
         }
