@@ -6,31 +6,10 @@
  * Licensed under the WTFPL license.
  */
 
-'use strict';
+exports.init = function (grunt) {
+    'use strict';
 
-module.exports = function (grunt) {
-
-    var path = require('path');
-
-    // load 3rd party tasks
-    grunt.task.loadTasks(path.resolve(__dirname, '../node_modules/grunt-string-replace/tasks'));
-
-    grunt.registerMultiTask('sass-replace', 'replaces sass declarations', function () {
-        var files, options, stringReplaceConfig;
-
-        // set default options
-        options = this.options();
-        files = this.files;
-
-        if (files && options) {
-            stringReplaceConfig = getStringReplaceConfig(files, options);
-            grunt.config.set('string-replace', stringReplaceConfig);
-            grunt.task.run('string-replace:sass');
-        }
-    });
-
-
-    function getStringReplaceConfig(files, options) {
+    exports.getStringReplaceConfig = function (files, options) {
         var replacements,
             variableReplacements = buildReplacements(options.variables, variableReplacementBuilder),
             importReplacements = buildReplacements(options.imports, importReplacementBuilder);
@@ -199,4 +178,5 @@ module.exports = function (grunt) {
         return typeof val === 'undefined';
     }
 
+    return exports;
 };

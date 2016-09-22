@@ -122,6 +122,11 @@ module.exports = function (grunt) {
                             name: 'myNumDefaultVar',
                             from: '10px',
                             to: '20em'
+                        },
+                        {
+                            name: /my[-_]?[Vv]ar/,
+                            //from: '10px',
+                            to: 'watwatwat'
                         }
                     ]
                 }
