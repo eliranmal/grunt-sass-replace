@@ -15,7 +15,7 @@ module.exports = function (grunt) {
         jshint: {
             all: [
                 'Gruntfile.js',
-                'tasks/*.js',
+                'tasks/**/*.js',
                 '<%= nodeunit.tests %>'
             ],
             options: {
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         //expand: true,
-                        flatten: true,
+                        //flatten: true,
                         //src: ['test/fixtures/**/*'],
                         src: 'test/fixtures/variables',
                         dest: 'tmp/variables/from-to'
@@ -63,9 +63,6 @@ module.exports = function (grunt) {
             'variables_name-to': {
                 files: [
                     {
-                        //expand: true,
-                        flatten: true,
-                        //src: ['test/fixtures/**/*'],
                         src: 'test/fixtures/variables',
                         dest: 'tmp/variables/name-to'
                     }
@@ -94,9 +91,6 @@ module.exports = function (grunt) {
             'variables_name-from-to': {
                 files: [
                     {
-                        //expand: true,
-                        flatten: true,
-                        //src: ['test/fixtures/**/*'],
                         src: 'test/fixtures/variables',
                         dest: 'tmp/variables/name-from-to'
                     }

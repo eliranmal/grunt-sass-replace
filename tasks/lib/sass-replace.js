@@ -9,6 +9,10 @@
 exports.init = function (grunt) {
     'use strict';
 
+    var log = lineLogger(grunt.log.writeln);
+    var bla = lineLogger(grunt.verbose.writeln);
+    var err = lineLogger(grunt.log.errorlns);
+
     exports.asStringReplacements = function (options) {
         var replacements,
             variableReplacements = buildReplacements(options.variables, variableReplacementBuilder),
@@ -179,10 +183,6 @@ exports.init = function (grunt) {
     function isUndefined(val) {
         return typeof val === 'undefined';
     }
-
-    var log = lineLogger(grunt.log.writeln);
-    var bla = lineLogger(grunt.verbose.writeln);
-    var err = lineLogger(grunt.log.errorlns);
 
     function lineLogger(fn) {
         return function logLines() {
