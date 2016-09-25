@@ -35,8 +35,8 @@ module.exports = function (grunt) {
                         //expand: true,
                         //flatten: true,
                         //src: ['test/fixtures/**/*'],
-                        src: 'test/fixtures/variables',
-                        dest: 'tmp/variables/from-to'
+                        src: 'test/fixtures/variables.scss',
+                        dest: 'tmp/variables/from-to.scss'
                     }
                 ],
                 options: {
@@ -63,8 +63,8 @@ module.exports = function (grunt) {
             'variables_name-to': {
                 files: [
                     {
-                        src: 'test/fixtures/variables',
-                        dest: 'tmp/variables/name-to'
+                        src: 'test/fixtures/variables.scss',
+                        dest: 'tmp/variables/name-to.scss'
                     }
                 ],
                 options: {
@@ -91,8 +91,8 @@ module.exports = function (grunt) {
             'variables_name-from-to': {
                 files: [
                     {
-                        src: 'test/fixtures/variables',
-                        dest: 'tmp/variables/name-from-to'
+                        src: 'test/fixtures/variables.scss',
+                        dest: 'tmp/variables/name-from-to.scss'
                     }
                 ],
                 options: {
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
             },
             'variables_regex-name': {
                 files: {
-                    'tmp/variables/regex-name': 'test/fixtures/variables'
+                    'tmp/variables/regex-name.scss': 'test/fixtures/variables.scss'
                 },
                 options: {
                     variables: [
@@ -139,12 +139,12 @@ module.exports = function (grunt) {
             },
             'variables_noop': {
                 files: {
-                    'tmp/variables/noop': 'test/fixtures/variables'
+                    'tmp/variables/noop.scss': 'test/fixtures/variables.scss'
                 }
             },
             'imports_from-to': {
                 files: {
-                    'tmp/imports/from-to': 'test/fixtures/imports'
+                    'tmp/imports/from-to.scss': 'test/fixtures/imports.scss'
                 },
                 options: {
                     imports: [
@@ -185,12 +185,12 @@ module.exports = function (grunt) {
             },
             'imports_noop': {
                 files: {
-                    'tmp/imports/noop': 'test/fixtures/imports'
+                    'tmp/imports/noop.scss': 'test/fixtures/imports.scss'
                 }
             },
             'mixed_imports': {
                 files: {
-                    'tmp/mixed/imports': 'test/fixtures/mixed'
+                    'tmp/mixed/imports.scss': 'test/fixtures/mixed.scss'
                 },
                 options: {
                     imports: [
@@ -231,7 +231,7 @@ module.exports = function (grunt) {
             },
             'mixed_variables': {
                 files: {
-                    'tmp/mixed/variables': 'test/fixtures/mixed'
+                    'tmp/mixed/variables.scss': 'test/fixtures/mixed.scss'
                 },
                 options: {
                     variables: [
@@ -256,7 +256,7 @@ module.exports = function (grunt) {
             },
             'mixed_all': {
                 files: {
-                    'tmp/mixed/all': 'test/fixtures/mixed'
+                    'tmp/mixed/all.scss': 'test/fixtures/mixed.scss'
                 },
                 options: {
                     variables: [

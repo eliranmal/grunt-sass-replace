@@ -32,8 +32,8 @@ exports['sass-replace'] = {
     variablesFromTo: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/variables/from-to');
-        var expected = grunt.file.read('test/expected/variables/from-to');
+        var actual = grunt.file.read('tmp/variables/from-to.scss');
+        var expected = grunt.file.read('test/expected/variables/from-to.scss');
         test.equal(actual, expected, 'should replace sass variable values, filtering by variable old value');
 
         test.done();
@@ -42,8 +42,8 @@ exports['sass-replace'] = {
     variablesNameTo: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/variables/name-to');
-        var expected = grunt.file.read('test/expected/variables/name-to');
+        var actual = grunt.file.read('tmp/variables/name-to.scss');
+        var expected = grunt.file.read('test/expected/variables/name-to.scss');
         test.equal(actual, expected, 'should replace sass variable values, filtering by variable name');
 
         test.done();
@@ -52,8 +52,8 @@ exports['sass-replace'] = {
     variablesNameFromTo: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/variables/name-from-to');
-        var expected = grunt.file.read('test/expected/variables/name-from-to');
+        var actual = grunt.file.read('tmp/variables/name-from-to.scss');
+        var expected = grunt.file.read('test/expected/variables/name-from-to.scss');
         test.equal(actual, expected, 'should replace sass variable values, filtering by variable name and old value');
 
         test.done();
@@ -62,8 +62,8 @@ exports['sass-replace'] = {
     variablesRegexName: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/variables/regex-name');
-        var expected = grunt.file.read('test/expected/variables/regex-name');
+        var actual = grunt.file.read('tmp/variables/regex-name.scss');
+        var expected = grunt.file.read('test/expected/variables/regex-name.scss');
         test.equal(actual, expected, 'should replace sass variable values, filtering by variable name as regex');
 
         test.done();
@@ -72,8 +72,8 @@ exports['sass-replace'] = {
     variablesNoop: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/variables/noop');
-        var expected = grunt.file.read('test/fixtures/variables');
+        var actual = grunt.file.read('tmp/variables/noop.scss');
+        var expected = grunt.file.read('test/fixtures/variables.scss');
         test.equal(actual, expected, 'should not replace anything, input file should be equal to output file');
 
         test.done();
@@ -82,8 +82,8 @@ exports['sass-replace'] = {
     importsFromTo: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/imports/from-to');
-        var expected = grunt.file.read('test/expected/imports/from-to');
+        var actual = grunt.file.read('tmp/imports/from-to.scss');
+        var expected = grunt.file.read('test/expected/imports/from-to.scss');
         test.equal(actual, expected, 'should replace sass import values, filtering by old value');
 
         test.done();
@@ -92,8 +92,8 @@ exports['sass-replace'] = {
     importsNoop: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/imports/noop');
-        var expected = grunt.file.read('test/fixtures/imports');
+        var actual = grunt.file.read('tmp/imports/noop.scss');
+        var expected = grunt.file.read('test/fixtures/imports.scss');
         test.equal(actual, expected, 'should not replace anything, input file should be equal to output file');
 
         test.done();
@@ -102,8 +102,8 @@ exports['sass-replace'] = {
     mixedVariables: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/mixed/variables');
-        var expected = grunt.file.read('test/expected/mixed/variables');
+        var actual = grunt.file.read('tmp/mixed/variables.scss');
+        var expected = grunt.file.read('test/expected/mixed/variables.scss');
         test.equal(actual, expected, 'should only replace sass variable values in a file with both imports and variables');
 
         test.done();
@@ -112,8 +112,8 @@ exports['sass-replace'] = {
     mixedImports: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/mixed/imports');
-        var expected = grunt.file.read('test/expected/mixed/imports');
+        var actual = grunt.file.read('tmp/mixed/imports.scss');
+        var expected = grunt.file.read('test/expected/mixed/imports.scss');
         test.equal(actual, expected, 'should only replace sass import values in a file with both imports and variables');
 
         test.done();
@@ -122,8 +122,8 @@ exports['sass-replace'] = {
     mixedAll: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/mixed/all');
-        var expected = grunt.file.read('test/expected/mixed/all');
+        var actual = grunt.file.read('tmp/mixed/all.scss');
+        var expected = grunt.file.read('test/expected/mixed/all.scss');
         test.equal(actual, expected, 'should replace sass import values and variable values in a file with both imports and variables');
 
         test.done();

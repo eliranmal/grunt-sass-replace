@@ -20,7 +20,19 @@ module.exports = function (grunt) {
 
         // set default options
         options = this.options();
-        files = this.files;
+
+        // todo - add logs (warnings on unused files)
+        // todo - test this!
+        files = this.files.filter(function (file) {
+            if (file.src && file.dest) {
+                return file.src
+                    .map(function (src) {
+                        return src.indexOf('.scss') === src.length - 5;
+                    })
+                    .filter(Boolean)
+                    .length;
+            }
+        });
 
         if (files && options) {
             replacements = sassReplace.asStringReplacements(options);

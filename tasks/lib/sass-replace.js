@@ -9,10 +9,6 @@
 exports.init = function (grunt) {
     'use strict';
 
-    var log = lineLogger(grunt.log.writeln),
-        bla = lineLogger(grunt.verbose.writeln),
-        err = lineLogger(grunt.log.errorlns);
-
     exports.asStringReplacements = function (options) {
         var replacements,
             variableReplacements = buildReplacements(options.variables, variableReplacementBuilder),
@@ -20,8 +16,7 @@ exports.init = function (grunt) {
 
         replacements = [].concat(variableReplacements, importReplacements);
 
-        bla('effective string-replace replacements:');
-        bla(stringify(replacements));
+        grunt.log.debug('effective string-replace replacements:').debug(stringify(replacements));
 
         return replacements;
     };
@@ -36,34 +31,42 @@ exports.init = function (grunt) {
             to = v.to;
 
         if (isUndefined(name) && isUndefined(from)) {
-            err('one of "name" or "from" must be defined in a variable replacement');
+            grunt.log.error().error('one of "name" or "from" must be defined in a variable replacement');
             return false;
         }
 
         if (!isUndefined(name) && !isString(name) && !isRegex(name)) {
-            err('"name" must be a string or a regex in a variable replacement');
+            grunt.log.error().error('"name" must be a string or a regex in a variable replacement');
             return false;
         }
 
         if (isUndefined(to)) {
-            err('"to" must be defined in a variable replacement');
+            grunt.log.error().error('"to" must be defined in a variable replacement');
             return false;
         }
 
-        bla('> building variable replacement', 'name: ' + name, 'from: ' + from, 'to: ' + to);
-
-        pattern = buildVariableReplacementPattern(name, from);
+        pattern = buildVariableReplacementPattern(name, from, to);
 
         return {
-            pattern: new RegExp(pattern, 'gm'),
+            pattern: pattern,
             replacement: function (match, p1, p2, p3) {
-                bla('> replacement callback', 'match: ' + match, 'p1: ' + p1, 'p2: ' + p2, 'p3: ' + p3);
+
+                grunt.verbose.subhead('matching variable replacement...');
+                grunt.verbose.debug()
+                    .debug('match: ' + match['cyan'])
+                    .debug('captured groups: ' + grunt.log.wordlist([p1, p2, p3]))
+                    .debug();
+
                 return p1 + to + p3;
             }
         };
     }
 
-    function buildVariableReplacementPattern(name, from) {
+    function buildVariableReplacementPattern(name, from, to) {
+        var patternSegments;
+
+        grunt.verbose.subhead('building variable replacement pattern');
+
         if (isUndefined(name)) {
             name = '\\S+'; // match at least one non-whitespace character
         } else if (isString(name)) {
@@ -72,8 +75,16 @@ exports.init = function (grunt) {
             name = name.source;
         }
         from = from ? regexEscape(from) : '[^\\s"\';!]*';
-        bla('effective name: ' + name, 'effective from: ' + from);
-        return [
+
+        grunt.verbose.debug()
+            .debug('effective variable replacement: ')
+            .debug(stringify({
+                name: name,
+                from: from,
+                to: to
+            })['cyan']);
+
+        patternSegments = [
             /**/    '^',                                // start line
             /**/    '(',                                // start capture group $1
             /**/        '\\$',                          // name must start with $
@@ -86,7 +97,9 @@ exports.init = function (grunt) {
             /**/        '(?:(?:!default\\s*;)|;)',      // allow for !default after value
             /**/    ')',                                // end capture group $3
             /**/    '$'                                 // end line
-        ].join('');
+        ];
+
+        return new RegExp(patternSegments.join(''), 'gm');
     }
 
     function importReplacementBuilder(i) {
@@ -95,21 +108,23 @@ exports.init = function (grunt) {
             to = i.to;
 
         if ((isUndefined(from) || !isString(from)) || (isUndefined(to) || !isString(to))) {
-            err('both "from" and "to" must be defined and of type string in an import replacement');
+            grunt.log.error().error('both "from" and "to" must be defined and of type string in an import replacement');
             return false;
         }
 
         pattern = buildImportReplacementPattern(from);
 
         return {
-            pattern: new RegExp(pattern, 'gm'),
+            pattern: pattern,
             replacement: '$1' + to + '$2'
         };
     }
 
     function buildImportReplacementPattern(from) {
+        var patternSegments;
         from = regexEscape(from);
-        return [
+
+        patternSegments = [
             /**/    '^',                                                // start line
             /**/    '(',                                                // start group $1
             /**/        '\\s*',                                         // allow indentation (e.g. for nested imports)
@@ -136,11 +151,9 @@ exports.init = function (grunt) {
             /**/        '.*',                                           //
             /**/    ')',                                                // end group $2
             /**/    '$'                                                 // end line
-        ].join('');
+        ];
 
-        // original regex, for reference. todo - remove this!
-        // harness non-capturing groups (:?) to allow for optional url("") and to handle optional surrounding quotes
-        //pattern: new RegExp('(@import\\s+(?:url\\()*["\']*|["\'])' + from + '(["\']|(?:["\']*\\)).*;)', 'g'),
+        return new RegExp(patternSegments.join(''), 'gm');
     }
 
     function buildReplacements(arr, builder) {
@@ -182,14 +195,6 @@ exports.init = function (grunt) {
 
     function isUndefined(val) {
         return typeof val === 'undefined';
-    }
-
-    function lineLogger(fn) {
-        return function logLines() {
-            [].slice.call(arguments).forEach(function (line) {
-                fn(line);
-            });
-        };
     }
 
     return exports;
