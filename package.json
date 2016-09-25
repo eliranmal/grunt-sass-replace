@@ -37,7 +37,9 @@
     "gruntplugin",
     "sass",
     "replace",
-    "substitution",
+    "variable",
+    "import",
+    "substitute",
     "string",
     "regex",
     "css"
