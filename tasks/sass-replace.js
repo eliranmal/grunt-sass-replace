@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     // load 3rd party tasks
     grunt.task.loadTasks(path.resolve(__dirname, '../node_modules/grunt-string-replace/tasks'));
 
-    grunt.registerMultiTask('sass-replace', 'replaces sass declarations', function () {
+    grunt.registerMultiTask('sass-replace', 'replaces sass values', function () {
         var files, options, replacements;
 
         // set default options
