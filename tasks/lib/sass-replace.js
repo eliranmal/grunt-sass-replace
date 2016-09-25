@@ -16,17 +16,14 @@ exports.init = function (grunt) {
 
         replacements = [].concat(variableReplacements, importReplacements);
 
-        grunt.verbose.writeln('effective string-replace replacements:');
-        grunt.verbose.writeln(stringify(replacements));
+        bla('effective string-replace replacements:');
+        bla(stringify(replacements));
 
         return replacements;
     };
 
-
     // todo - add option to preserve !default in variables
     // todo - (which means the default behavior will be to overwrite everything after the ':')
-
-    // todo - add option to pass regex as filter in the "name" field, e.g. name: /my[-_][vV]ar/
 
     function variableReplacementBuilder(v) {
         var pattern,
@@ -35,43 +32,55 @@ exports.init = function (grunt) {
             to = v.to;
 
         if (isUndefined(name) && isUndefined(from)) {
-            grunt.log.errorlns('one of "name" or "from" must be defined in a variable replacement');
+            err('one of "name" or "from" must be defined in a variable replacement');
             return false;
         }
 
-        if (!isUndefined(name) && !isString(name)) {
-            grunt.log.errorlns('"name" must be a string in a variable replacement');
+        if (!isUndefined(name) && !isString(name) && !isRegex(name)) {
+            err('"name" must be a string or a regex in a variable replacement');
             return false;
         }
 
         if (isUndefined(to)) {
-            grunt.log.errorlns('"to" must be defined in a variable replacement');
+            err('"to" must be defined in a variable replacement');
             return false;
         }
 
-        pattern = buildVariableReplacementPattern(from, name);
+        bla('> building variable replacement', 'name: ' + name, 'from: ' + from, 'to: ' + to);
+
+        pattern = buildVariableReplacementPattern(name, from);
 
         return {
             pattern: new RegExp(pattern, 'gm'),
-            replacement: '$1' + to + '$2'
+            replacement: function (match, p1, p2, p3) {
+                bla('> replacement callback', 'match: ' + match, 'p1: ' + p1, 'p2: ' + p2, 'p3: ' + p3);
+                return p1 + to + p3;
+            }
         };
     }
 
-    function buildVariableReplacementPattern(from, name) {
-        name = name ? asRegexString(name) : '\\S+'; // match at least one non-whitespace character
-        from = from ? asRegexString(from) : '.*';
+    function buildVariableReplacementPattern(name, from) {
+        if (isUndefined(name)) {
+            name = '\\S+'; // match at least one non-whitespace character
+        } else if (isString(name)) {
+            name = regexEscape(name);
+        } else if (isRegex(name)) {
+            name = name.source;
+        }
+        from = from ? regexEscape(from) : '[^\\s"\';!]*';
+        bla('effective name: ' + name, 'effective from: ' + from);
         return [
             /**/    '^',                                // start line
-            /**/    '(',                                // start capture first group
+            /**/    '(',                                // start capture group $1
             /**/        '\\$',                          // name must start with $
-            /**/        name,                           //
+            /**/        '(' + name + ')',               // capture group $2 (for debugging)
             /**/        ':\\s*["\']?',                  // the value's optional open quote
-            /**/    ')',                                // end capture first group
+            /**/    ')',                                // end capture group $1
             /**/    from,                               //
-            /**/    '(',                                // start capture second group
+            /**/    '(',                                // start capture group $3
             /**/        '["\']?\\s*',                   // the value's optional close quote
             /**/        '(?:(?:!default\\s*;)|;)',      // allow for !default after value
-            /**/    ')',                                // end capture second group
+            /**/    ')',                                // end capture group $3
             /**/    '$'                                 // end line
         ].join('');
     }
@@ -81,8 +90,8 @@ exports.init = function (grunt) {
             from = i.from,
             to = i.to;
 
-        if (!isString(from) || !isString(to)) {
-            grunt.log.errorlns('both "from" and "to" must be defined and of type string in an import replacement');
+        if ((isUndefined(from) || !isString(from)) || (isUndefined(to) || !isString(to))) {
+            err('both "from" and "to" must be defined and of type string in an import replacement');
             return false;
         }
 
@@ -95,14 +104,14 @@ exports.init = function (grunt) {
     }
 
     function buildImportReplacementPattern(from) {
-        from = asRegexString(from);
+        from = regexEscape(from);
         return [
             /**/    '^',                                                // start line
             /**/    '(',                                                // start group $1
-            /**/        '\\s*',                                         // allow for indentation (e.g. for nested imports)
+            /**/        '\\s*',                                         // allow indentation (e.g. for nested imports)
             ///**/        '@import\\s+',                                //
             /**/        '(?:',                                          //
-            /**/            '(?:@import\\s+)|(?:@import.*,\\s*)',       // allow for multiple values, e.g. @import "wat", "wow"; todo - can i do this with \2 capturing the whole second group + from variable ?
+            /**/            '(?:@import\\s+)|(?:@import.*,\\s*)',       // allow multiple values, e.g. @import "wat", "wow"; todo - can i do this with \2 capturing the whole second group + from variable ?
             ///**/            '@import(?=\\s+|.*,\\s*)',                // attempt the previous line with assertions
             /**/        ')',                                            //
             /**/        '(?:',                                          //
@@ -146,7 +155,7 @@ exports.init = function (grunt) {
         return replacements;
     }
 
-    function asRegexString(str) {
+    function regexEscape(str) {
         return (str + '').replace(/(["'\*\.\-\?\$\{}])/g, '\\$1');
     }
 
@@ -160,7 +169,7 @@ exports.init = function (grunt) {
     }
 
     function isString(val) {
-        return val && typeof val === 'string';
+        return typeof val === 'string';
     }
 
     function isRegex(val) {
@@ -169,6 +178,18 @@ exports.init = function (grunt) {
 
     function isUndefined(val) {
         return typeof val === 'undefined';
+    }
+
+    var log = lineLogger(grunt.log.writeln);
+    var bla = lineLogger(grunt.verbose.writeln);
+    var err = lineLogger(grunt.log.errorlns);
+
+    function lineLogger(fn) {
+        return function logLines() {
+            [].slice.call(arguments).forEach(function (line) {
+                fn(line);
+            });
+        };
     }
 
     return exports;

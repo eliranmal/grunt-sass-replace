@@ -122,11 +122,23 @@ module.exports = function (grunt) {
                             name: 'myNumDefaultVar',
                             from: '10px',
                             to: '20em'
-                        },
+                        }
+                    ]
+                }
+            },
+            'variables_regex-name': {
+                files: {
+                    'tmp/variables/regex-name': 'test/fixtures/variables'
+                },
+                options: {
+                    variables: [
                         {
                             name: /my[-_]?[Vv]ar/,
-                            //from: '10px',
-                            to: 'watwatwat'
+                            to: 1000000000000
+                        },
+                        {
+                            name: /my[-_]?[Nn]um[-_]?[Vv]ar/,
+                            to: -1
                         }
                     ]
                 }

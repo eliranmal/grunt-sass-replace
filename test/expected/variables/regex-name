@@ -1,0 +1,12 @@
+$my-var: "1000000000000";
+$my-default-var: "foo" !default;
+$my_var: "1000000000000";
+$my_default_var: "foo" !default;
+$myVar: "1000000000000";
+$myDefaultVar: "foo"   !default;
+$my-num-var: -1;
+$my-num-default-var: 10 !default;
+$my_num_var: -1;
+$my_num_default_var: 3.333 !default;
+$myNumVar: -1;
+$myNumDefaultVar: 10px   !default;
