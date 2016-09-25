@@ -9,9 +9,9 @@
 exports.init = function (grunt) {
     'use strict';
 
-    var log = lineLogger(grunt.log.writeln);
-    var bla = lineLogger(grunt.verbose.writeln);
-    var err = lineLogger(grunt.log.errorlns);
+    var log = lineLogger(grunt.log.writeln),
+        bla = lineLogger(grunt.verbose.writeln),
+        err = lineLogger(grunt.log.errorlns);
 
     exports.asStringReplacements = function (options) {
         var replacements,
