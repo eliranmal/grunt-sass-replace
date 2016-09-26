@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# tests are run as an npm run script, and not via the grunt 'test' multitask, to allow the sass-replace
+# task to run separately with the 'force' flag.
+# this is needed as the tests also cover cases where the sass-replace task exits unsuccessfully.
 
 big_echo() {
     echo -e "\n\n> > > $1\n"
