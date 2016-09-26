@@ -21,16 +21,17 @@ module.exports = function (grunt) {
             files = this.files,
             options = this.options();
 
-        if (!options || isEmptyObject(options)) {
-            grunt.fail.warn('no options passed, aborting.');
-        }
-
-        if (options && !options.variables && !options.imports) {
-            grunt.fail.warn('options must contain "variables", "imports", or both. aborting.');
-        }
 
         if (!files || !files.length) {
-            grunt.fail.warn('no files passed, aborting.');
+            grunt.fail.fatal('no files passed, aborting.');
+        }
+
+        if (!options || isEmptyObject(options)) {
+            grunt.fail.fatal('no options passed, aborting.');
+        }
+
+        if (options && (!options.variables || !options.variables.length) && (!options.imports || !options.imports.length)) {
+            grunt.fail.warn('options must contain "variables", "imports", or both. aborting.');
         }
 
         scssFiles = files.filter(function (file) {
@@ -47,13 +48,22 @@ module.exports = function (grunt) {
             return isSrcValid && isDestValid;
         });
 
-        if (!scssFiles || !scssFiles.length) {
+        if (scssFiles && scssFiles.length) {
+            grunt.log.ok('scss files found in passed files.');
+        }else {
             grunt.fail.warn('no scss files found in passed files, aborting.');
         }
 
         replacements = sassReplace.asStringReplacements(options);
         if (replacements) {
-            grunt.log.ok('replacements resolved, running string-replace task.');
+            grunt.log.ok('replacements resolved.');
+        } else {
+            grunt.fail.warn('failed to resolve replacements, aborting.');
+        }
+
+        // check that the required parameters are available, to avoid writing files when running with --force
+        if (scssFiles && replacements) {
+            grunt.log.writeln('running string-replace task.');
             grunt.config.set('string-replace', {
                 sass: {
                     files: scssFiles,
@@ -63,9 +73,7 @@ module.exports = function (grunt) {
                 }
             });
             grunt.task.run('string-replace:sass');
-            grunt.log.ok();
-        } else {
-            grunt.verbose.or.writeln('failed in resolving replacements, skipping string-replace task run.'.yellow.bold);
+            grunt.log.ok().ok('sass-replace finished successfully.');
         }
     });
 
