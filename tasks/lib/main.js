@@ -51,11 +51,10 @@ exports.init = function (grunt) {
             pattern: pattern,
             replacement: function (match, p1, p2, p3) {
 
-                grunt.verbose.subhead('matching variable replacement...');
-                grunt.verbose.debug()
+                grunt.log
+                    .debug('matching variable replacement'.bold)
                     .debug('match: ' + match['cyan'])
-                    .debug('captured groups: ' + grunt.log.wordlist([p1, p2, p3]))
-                    .debug();
+                    .debug('captured groups: ' + grunt.log.wordlist([p1, p2, p3]));
 
                 return p1 + to + p3;
             }
@@ -65,7 +64,7 @@ exports.init = function (grunt) {
     function buildVariableReplacementPattern(name, from, to) {
         var patternSegments;
 
-        grunt.verbose.subhead('building variable replacement pattern');
+        grunt.verbose.writeln('building variable replacement pattern with: ' + ('name=' + name + ', from=' + from + ', to=' + to).cyan);
 
         if (isUndefined(name)) {
             name = '\\S+'; // match at least one non-whitespace character
@@ -76,13 +75,7 @@ exports.init = function (grunt) {
         }
         from = from ? regexEscape(from) : '[^\\s"\';!]*';
 
-        grunt.verbose.debug()
-            .debug('effective variable replacement: ')
-            .debug(stringify({
-                name: name,
-                from: from,
-                to: to
-            })['cyan']);
+        grunt.log.debug('effective variable replacement params: ' + ('name=' + name + ', from=' + from + ', to=' + to).cyan);
 
         patternSegments = [
             /**/    '^',                                // start line

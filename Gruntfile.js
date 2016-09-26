@@ -137,11 +137,6 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            'variables_noop': {
-                files: {
-                    'tmp/variables/noop.scss': 'test/fixtures/variables.scss'
-                }
-            },
             'imports_from-to': {
                 files: {
                     'tmp/imports/from-to.scss': 'test/fixtures/imports.scss'
@@ -181,11 +176,6 @@ module.exports = function (grunt) {
                             to: 'bar-bar-bar'
                         }
                     ]
-                }
-            },
-            'imports_noop': {
-                files: {
-                    'tmp/imports/noop.scss': 'test/fixtures/imports.scss'
                 }
             },
             'mixed_imports': {
@@ -311,6 +301,50 @@ module.exports = function (grunt) {
                             to: 'bar-bar-bar'
                         }
                     ]
+                }
+            },
+            'invalid_files_wrong_ext_src': {
+                files: {
+                    'tmp/mixed/all.scss': 'test/fixtures/run.sh'
+                },
+                options: {
+                    variables: [
+                        {
+                            from: 'foo',
+                            to: 'bar'
+                        }
+                    ]
+                }
+            },
+            'invalid_files_wrong_ext_dest': {
+                files: {
+                    'tmp/mixed/doc.md': 'test/fixtures/mixed.scss'
+                },
+                options: {
+                    variables: [
+                        {
+                            from: 'foo',
+                            to: 'bar'
+                        }
+                    ]
+                }
+            },
+            'invalid_files_wrong_ext_src_dest': {
+                files: {
+                    'tmp/mixed/doc.md': 'test/fixtures/doc.md'
+                },
+                options: {
+                    variables: [
+                        {
+                            from: 'foo',
+                            to: 'bar'
+                        }
+                    ]
+                }
+            },
+            'missing_options': {
+                files: {
+                    'tmp/mixed/noop.scss': 'test/fixtures/mixed.scss'
                 }
             }
         },

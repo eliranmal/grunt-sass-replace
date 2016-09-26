@@ -10,43 +10,85 @@ module.exports = function (grunt) {
     'use strict';
 
     var path = require('path'),
-        sassReplace = require('./lib/sass-replace').init(grunt);
+        sassReplace = require('./lib/main').init(grunt);
 
     // load 3rd party tasks
     grunt.task.loadTasks(path.resolve(__dirname, '../node_modules/grunt-string-replace/tasks'));
 
     grunt.registerMultiTask('sass-replace', 'replaces sass values', function () {
-        var files, options, replacements;
+        var scssFiles,
+            replacements,
+            files = this.files,
+            options = this.options();
 
-        // set default options
-        options = this.options();
+        if (!options || isEmptyObject(options)) {
+            grunt.fail.warn('no options passed, aborting.');
+        }
 
-        // todo - add logs (warnings on unused files)
-        // todo - test this!
-        files = this.files.filter(function (file) {
-            if (file.src && file.dest) {
-                return file.src
-                    .map(function (src) {
-                        return src.indexOf('.scss') === src.length - 5;
-                    })
-                    .filter(Boolean)
-                    .length;
+        if (options && !options.variables && !options.imports) {
+            grunt.fail.warn('options must contain "variables", "imports", or both. aborting.');
+        }
+
+        if (!files || !files.length) {
+            grunt.fail.warn('no files passed, aborting.');
+        }
+
+        scssFiles = files.filter(function (file) {
+            var src = file.src,
+                dest = file.dest,
+                isSrcValid = src && src.length && src.filter(isScssFile).length,
+                isDestValid = dest && isScssFile(dest);
+            if (!isSrcValid) {
+                grunt.verbose.or.writeln(('src [' + src + '] is not an scss file, it will be excluded.').yellow.bold);
             }
+            if (!isDestValid) {
+                grunt.verbose.or.writeln(('dest [' + dest + '] is not an scss file, it will be excluded.').yellow.bold);
+            }
+            return isSrcValid && isDestValid;
         });
 
-        if (files && options) {
-            replacements = sassReplace.asStringReplacements(options);
+        if (!scssFiles || !scssFiles.length) {
+            grunt.fail.warn('no scss files found in passed files, aborting.');
+        }
 
+        replacements = sassReplace.asStringReplacements(options);
+        if (replacements) {
+            grunt.log.ok('replacements resolved, running string-replace task.');
             grunt.config.set('string-replace', {
                 sass: {
-                    files: files,
+                    files: scssFiles,
                     options: {
                         replacements: replacements
                     }
                 }
             });
             grunt.task.run('string-replace:sass');
+            grunt.log.ok();
+        } else {
+            grunt.verbose.or.writeln('failed in resolving replacements, skipping string-replace task run.'.yellow.bold);
         }
     });
+
+    function isEmptyObject(obj) {
+        return !hasProps(obj);
+    }
+
+    function hasProps(obj) {
+        for (var p in obj) {
+            return true;
+        }
+    }
+
+    function isScssFile(path) {
+        return hasExtension(path, 'scss');
+    }
+
+    function hasExtension(path, ext) {
+        return endsWith(path, '.' + ext);
+    }
+
+    function endsWith(str, ending) {
+        return str.indexOf(ending) === str.length - ending.length;
+    }
 
 };

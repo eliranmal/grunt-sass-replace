@@ -69,32 +69,12 @@ exports['sass-replace'] = {
         test.done();
     },
 
-    variablesNoop: function (test) {
-        test.expect(1);
-
-        var actual = grunt.file.read('tmp/variables/noop.scss');
-        var expected = grunt.file.read('test/fixtures/variables.scss');
-        test.equal(actual, expected, 'should not replace anything, input file should be equal to output file');
-
-        test.done();
-    },
-
     importsFromTo: function (test) {
         test.expect(1);
 
         var actual = grunt.file.read('tmp/imports/from-to.scss');
         var expected = grunt.file.read('test/expected/imports/from-to.scss');
         test.equal(actual, expected, 'should replace sass import values, filtering by old value');
-
-        test.done();
-    },
-
-    importsNoop: function (test) {
-        test.expect(1);
-
-        var actual = grunt.file.read('tmp/imports/noop.scss');
-        var expected = grunt.file.read('test/fixtures/imports.scss');
-        test.equal(actual, expected, 'should not replace anything, input file should be equal to output file');
 
         test.done();
     },
@@ -125,6 +105,17 @@ exports['sass-replace'] = {
         var actual = grunt.file.read('tmp/mixed/all.scss');
         var expected = grunt.file.read('test/expected/mixed/all.scss');
         test.equal(actual, expected, 'should replace sass import values and variable values in a file with both imports and variables');
+
+        test.done();
+    },
+
+    // todo - add tests for invalid file extensions
+
+    missingOptions: function (test) {
+        test.expect(1);
+
+        var isDestFileExists = grunt.file.exists('tmp/mixed/noop.scss');
+        test.equal(isDestFileExists, false, 'should not write any files');
 
         test.done();
     }
