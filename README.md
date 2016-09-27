@@ -111,7 +111,7 @@ with double quotes, however if the value _is_ surrounded, make sure you surround
 Just to be clear:
 
 :+1:  
-```json
+```javascript
   {
     from: '"foo"',
     to: '"bar"'
@@ -124,7 +124,7 @@ Just to be clear:
 ```
 
 :-1:  
-```json
+```javascript
   {
     from: '"foo"',
     to: 'bar'
