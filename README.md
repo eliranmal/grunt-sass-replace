@@ -95,7 +95,7 @@ When a string is passed, the literal value is searched, e.g. `my-var` will match
 A regular expression can be passed in its literal form or as a `RegExp` instance.  
 e.g. `/my[-_]?[Vv]ar/` or `new RegExp('my[-_]?[Vv]ar')` will both match `$my-var: "foo"`, `$my_var: "foo"` and `$myVar: "foo"`.
 
-When using `RegExp` instance, only its `source` is used for the lookup (flags are ignored).
+When using a `RegExp` instance, only its source is used for the lookup (flags are ignored).
 
 ###### VariableInstruction.from
 <sup>
@@ -107,11 +107,11 @@ Mandatory: either this or the `name` field must be set
 TODO...
 
 ###### VariableInstruction.to
-<sub>
+<sup>
 Type: `*`  
 Default value: none  
 Mandatory: either this or the `name` field must be set
-</sub>
+</sup>
 
 TODO...
 
