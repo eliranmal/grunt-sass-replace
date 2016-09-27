@@ -18,8 +18,8 @@ var util = module.exports = {
         return util.endsWith(path, '.' + ext);
     },
 
-    endsWith: function (str, ending) {
-        return str.indexOf(ending) === str.length - ending.length;
+    endsWith: function (str, term) {
+        return str.indexOf(term) === str.length - term.length;
     },
 
     regexify: function (str) {
