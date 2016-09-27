@@ -68,12 +68,12 @@ An object representing a single instruction in the `options.variables` collectio
 The `to` field is mandatory, and either `from` or `name` can be used in conjunction to filter the lookup.
 
 When both `name` and `from` are used, they both apply as filters. As `name` can be passed as a string *or* as a regular 
-expression, it presents two use cases:
+expression, it presents two common use cases:
 
-- passing both fields as strings can be used to only replace values of duplicate variable declarations, e.g. overriding 
-a color variable in a specific file.
-- passing a regular expression to `name` and a string to `from` can be used to achieve finer filtering, only matching
-variables with a certain name which *also* have a certain value.
+- passing both fields as strings can be used to only replace values of duplicate variable declarations, e.g. a 
+variable overriding a color in a specific file.
+- passing a string to `from` and a regular expression to `name` can be used to achieve finer filtering, matching
+variables which have a certain value, by several names.
 
 ###### VariableInstruction.name
 *Type: `String|RegExp`.*  
