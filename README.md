@@ -60,7 +60,9 @@ Default value: none.
 
 A collection of instructions for replacing variable values. Either this or the `imports` option must be set.
 
-##### name
+##### variableInstruction
+
+###### variableInstruction.name
 Type: `String|RegExp`
 Default value: `/\S+/` (match at least one non-whitespace character).
 
