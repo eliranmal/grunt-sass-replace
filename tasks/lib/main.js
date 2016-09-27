@@ -75,7 +75,12 @@ exports.init = function (grunt) {
         } else if (util.isRegex(name)) {
             name = name.source;
         }
-        from = from ? util.regexify(from) : '[^\\s"\';!]*';
+
+        if (util.isUndefined(from)) {
+            from = '[^\\s"\';!]*';
+        } else {
+            from = util.regexify(from);
+        }
 
         grunt.log.debug('effective variable replacement params: ' + ('name=' + name + ', from=' + from + ', to=' + to).cyan);
 

@@ -54,17 +54,23 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.variables
+Type: `Array<Object>`
+Default value: none.
 
-A string value that is used to do something with whatever.
+A collection of instructions for replacing variable values. Either this or the `imports` option must be set.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+##### name
+Type: `String|RegExp`
+Default value: `/\S+/` (match at least one non-whitespace character).
 
-A string value that is used to do something else with whatever else.
+
+#### options.imports
+Type: `Array<Object>`
+Default value: none.
+
+A collection of instructions for replacing import paths. Either this or the `variables` option must be set.
+
 
 ### Usage Examples
 
