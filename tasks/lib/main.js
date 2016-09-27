@@ -33,6 +33,11 @@ exports.init = function (grunt) {
             from = v.from,
             to = v.to;
 
+        if (util.isUndefined(to)) {
+            grunt.log.error().error('"to" must be defined in a variable replacement instruction');
+            return false;
+        }
+
         if (util.isUndefined(name) && util.isUndefined(from)) {
             grunt.log.error().error('one of "name" or "from" must be defined in a variable replacement instruction');
             return false;
@@ -48,8 +53,8 @@ exports.init = function (grunt) {
             return false;
         }
 
-        if (util.isUndefined(to)) {
-            grunt.log.error().error('"to" must be defined in a variable replacement instruction');
+        if (!util.isString(to) && !util.isNumber(to)&& !util.isBoolean(to)) {
+            grunt.log.error().error('"to" must be a string, a number or a boolean in a variable replacement instruction');
             return false;
         }
 
