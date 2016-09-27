@@ -55,15 +55,25 @@ grunt.initConfig({
 ### Options
 
 #### options.variables
-
 *Type: `Array<Object>`.*  
 *Default value: none.*
 
 A collection of instructions for replacing variable values. Either this or the `imports` option must be set.
 
 ##### VariableInstruction
+*Type: `Object`.*  
+*Default value: none.*
 
-An object representing a single instruction in the `options.variables` collection.
+An object representing a single instruction in the `options.variables` collection.  
+The `to` field is mandatory, and either `from` or `name` can be used in conjunction to filter the lookup.
+
+When both `name` and `from` are used, they both apply as filters. As `name` can be passed as a string *or* as a regular 
+expression, it presents two use cases:
+
+- passing both fields as strings can be used to only replace values of duplicate variable declarations, e.g. overriding 
+a color variable in a specific file.
+- passing a regular expression to `name` and a string to `from` can be used to achieve finer filtering, only matching
+variables with a certain name which *also* have a certain value.
 
 ###### VariableInstruction.name
 *Type: `String|RegExp`.*  
@@ -73,10 +83,16 @@ The variable name for lookup, without the leading `$`.
  
 When a string is passed, the literal value is searched, e.g. `my-var` will match `$my-var: "foo"`.
 
-A regular expression can be passed in its literal form or as a `RegExp` instance, e.g. 
-`/my[-_]?[Vv]ar/` or `new RegExp('my[-_]?[Vv]ar')` will match `$my-var: "foo"`, `$my_var: "foo"` and `$myVar: "foo"`.
+A regular expression can be passed in its literal form or as a `RegExp` instance.  
+e.g. `/my[-_]?[Vv]ar/` or `new RegExp('my[-_]?[Vv]ar')` will match `$my-var: "foo"`, `$my_var: "foo"` and `$myVar: "foo"`.
 
 When using `RegExp` instance, only its `source` is used for the lookup (flags are ignored).
+
+###### VariableInstruction.from
+*Type: `String|RegExp`.*  
+*Default value: `/\S+/` (match at least one non-whitespace character).*
+
+The variable name for lookup, without the leading `$`.
 
 
 #### options.imports
