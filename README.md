@@ -55,16 +55,20 @@ grunt.initConfig({
 ### Options
 
 #### options.variables
-*Type: `Array<Object>`.*  
-*Default value: none.*  
-*Mandatory: either this or the `imports` option must be set.*
+<sup>
+Type: `Array<Object>`.  
+Default value: none.  
+Mandatory: either this or the `imports` option must be set.
+</sup>
 
 A collection of instructions for replacing variable values.
 
 ##### VariableInstruction
-*Type: `Object`.*  
-*Default value: none.*  
-*Mandatory: yes, at least one instruction must be passed.*
+<sup>
+Type: `Object`.  
+Default value: none.  
+Mandatory: yes, at least one instruction must be passed.
+</sup>
 
 An object representing a single instruction in the `options.variables` collection.  
 The `to` field is mandatory, and either `from`, `name` or both can be used to filter the lookup.
@@ -78,9 +82,11 @@ variable overriding a color in a specific file.
 variables which have a certain value, by several names.
 
 ###### VariableInstruction.name
-*Type: `String|RegExp`.*  
-*Default value: `/\S+/` (match at least one non-whitespace character).*  
-*Mandatory: either this or the `from` field must be set.*
+<sup>
+Type: `String|RegExp`.  
+Default value: `/\S+/` (match at least one non-whitespace character).  
+Mandatory: either this or the `from` field must be set.
+</sup>
 
 The variable name for lookup, without the leading `$`.
  
@@ -101,17 +107,21 @@ Mandatory: either this or the `name` field must be set.
 TODO...
 
 ###### VariableInstruction.to
-*__Type:__ `&ast;`.*  
-*__Default value:__ `/\S+/`.*  
-*__Mandatory:__ yes.*
+<sup>
+Type: `*`.  
+Default value: none.  
+Mandatory: either this or the `name` field must be set.
+</sup>
 
 TODO...
 
 
 #### options.imports
-*Type: `Array<Object>`.*  
-*Default value: none.*  
-*Mandatory: either this or the `variables` option must be set.*
+<sup>
+Type: `Array<Object>`.  
+Default value: none.  
+Mandatory: either this or the `variables` option must be set.
+</sup>
 
 A collection of instructions for replacing import paths.
 
