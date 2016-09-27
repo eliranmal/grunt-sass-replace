@@ -106,7 +106,7 @@ When using a `RegExp` instance, only its source is used for the lookup (flags ar
 
 The variable's current value for lookup.
 
-When replacing strings with strings, e.g. `$my-var: "foo" -> $my-var: "bar"`, the value don't need to be surrounded 
+When replacing strings with strings, e.g. `$my-var: "foo"` &rarr; `$my-var: "bar"`, the value don't need to be surrounded 
 with double quotes, however if the value _is_ surrounded, make sure you surround the value of [`to`][5] as well.
 Just to be clear:
 
