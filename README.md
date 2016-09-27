@@ -58,16 +58,16 @@ grunt.initConfig({
 <sup>
 **Type:** `Array<Object>`  
 **Default value:** none  
-**Mandatory:** either this or the [`imports`][4] option must be set
+**Mandatory:** either this or [`options.imports`][4] must be set
 </sup>
 
-A collection of instructions for replacing variable values.
+A collection of `VariableInstruction`s to describe replacements of sass variable values.
 
 ##### VariableInstruction
 <sup>
 **Type:** `Object`  
 **Default value:** none  
-**Mandatory:** yes, at least one instruction must be passed
+**Mandatory:** at least one `VariableInstruction` must be available on the [`options.variables`][8] collection
 </sup>
 
 An object representing a single instruction in the `options.variables` collection.  
@@ -153,16 +153,16 @@ readability and to avoid confusion or unexpected behavior.
 <sup>
 **Type:** `Array<Object>`  
 **Default value:** none  
-**Mandatory:** either this or the [`variables`][8] option must be set
+**Mandatory:** either this or [`options.variables`][8] must be set
 </sup>
 
-A collection of instructions for replacing `@import` paths.
+A collection of `ImportInstruction`s to describe replacements of `@import` paths.
 
 ##### ImportInstruction
 <sup>
 **Type:** `Object`  
 **Default value:** none  
-**Mandatory:** yes, at least one instruction must be passed
+**Mandatory:** at least one `ImportInstruction` must be available on the [`options.imports`][4] collection
 </sup>
 
 An object representing a single instruction in the `options.imports` collection.  
@@ -178,7 +178,8 @@ Both [`from`][10] and [`to`][11] fields are mandatory.
 The import path(s) current value for lookup. Captures only the path contents, i.e. everything between the surrounding 
 quotes, or inside a `url()`.
 
-Capturing of everything after the `@import` is currently not supported ([post an issue][12] if you find it useful).
+Capturing of everything after the `@import` (including quotes or `url()`s) is currently not supported, 
+[post an issue][12] if you find it useful. Also, passing regular expressions was not tested, but probably works.
 
 ###### ImportInstruction.to
 <sup>
@@ -193,35 +194,188 @@ A new value for the matched import path(s).
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
-```js
-grunt.initConfig({
-  'sass-replace': {
-    options: {},
-    files: {
-      'dest/default-options': ['src/testing', 'src/123'],
-    },
-  },
-});
+Sorry, no default options, it's all custom.
+
+
+
+
+
+
 ```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  'sass-replace': {
+'variables_from-to': {
+    files: [
+        {
+            //expand: true,
+            //flatten: true,
+            //src: ['test/fixtures/**/*'],
+            src: 'test/fixtures/variables.scss',
+            dest: 'tmp/variables/from-to.scss'
+        }
+    ],
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
+        variables: [
+            {
+                from: '"foo"',
+                to: '"bar"'
+            },
+            {
+                from: 10,
+                to: '10%'
+            },
+            {
+                from: 3.333,
+                to: 6.666
+            },
+            {
+                from: '10px',
+                to: '20em'
+            }
+        ]
+    }
+},
+'variables_name-to': {
+    files: [
+        {
+            src: 'test/fixtures/variables.scss',
+            dest: 'tmp/variables/name-to.scss'
+        }
+    ],
+    options: {
+        variables: [
+            {
+                name: 'my-var',
+                to: 'bar'
+            },
+            {
+                name: 'my-default-var',
+                to: 'bar'
+            },
+            {
+                name: 'my-num-var',
+                to: '20'
+            },
+            {
+                name: 'my-num-default-var',
+                to: 20
+            }
+        ]
+    }
+},
+'variables_name-from-to': {
+    files: [
+        {
+            src: 'test/fixtures/variables.scss',
+            dest: 'tmp/variables/name-from-to.scss'
+        }
+    ],
+    options: {
+        variables: [
+            {
+                name: 'my-var',
+                from: 'foo',
+                to: 'bar'
+            },
+            {
+                name: 'my-default-var',
+                from: 'foo',
+                to: 'bar'
+            },
+            {
+                name: 'my_num_var',
+                from: 3.333,
+                to: '6.666'
+            },
+            {
+                name: 'myNumDefaultVar',
+                from: '10px',
+                to: '20em'
+            }
+        ]
+    }
+},
+'variables_regex-name-to': {
     files: {
-      'dest/default-options': ['src/testing', 'src/123'],
+        'tmp/variables/regex-name-to.scss': 'test/fixtures/variables.scss'
     },
-  },
-});
+    options: {
+        variables: [
+            {
+                name: new RegExp('my[-_]?[Vv]ar'),
+                to: 1000000000000
+            },
+            {
+                name: /my[-_]?[Nn]um[-_]?[Vv]ar/,
+                to: -1
+            }
+        ]
+    }
+},
+'variables_regex-name-from-to': {
+    files: {
+        'tmp/variables/regex-name-from-to.scss': 'test/fixtures/variables.scss'
+    },
+    options: {
+        variables: [
+            {
+                name: new RegExp('my[-_]?[Vv]ar'),
+                from: 'foo',
+                to: 1000000000000
+            },
+            {
+                name: /my[-_]?[Nn]um[-_]?[Vv]ar/,
+                from: 10,
+                to: -1
+            }
+        ]
+    }
+},
+'imports_from-to': {
+    files: {
+        'tmp/imports/from-to.scss': 'test/fixtures/imports.scss'
+    },
+    options: {
+        imports: [
+            {
+                from: 'foo',
+                to: 'bar'
+            },
+            {
+                from: 'foo.css',
+                to: 'bar.css'
+            },
+            {
+                from: 'foo.scss',
+                to: 'bar.scss'
+            },
+            {
+                from: 'http://wat.com/foo',
+                to: 'http://wat.com/bar'
+            },
+            {
+                from: 'http://wat.tha.fuck.com/foo',
+                to: 'http://wat.tha.fuck.com/bar'
+            },
+            {
+                from: 'http://wat.com/foo?family=#{$family}',
+                to: 'http://wat.com/bar?family=#{$family}'
+            },
+            {
+                from: 'foo-foo',
+                to: 'bar-bar'
+            },
+            {
+                from: 'foo-foo-foo',
+                to: 'bar-bar-bar'
+            }
+        ]
+    }
+},
 ```
+        
+
+
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
