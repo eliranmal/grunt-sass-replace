@@ -25,7 +25,8 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "bin/test.sh"
+    "sanitize": "grunt jshint",
+    "test": "grunt clean; grunt sass-replace --force; grunt nodeunit"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "^0.9.2",

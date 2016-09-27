@@ -9,6 +9,9 @@
 exports.init = function (grunt) {
     'use strict';
 
+    var path = require('path'),
+        util = require(path.resolve(__dirname, './util'));
+
     exports.asStringReplacements = function (options) {
         var replacements,
             variableReplacements = buildReplacements(options.variables, variableReplacementBuilder),
@@ -16,7 +19,7 @@ exports.init = function (grunt) {
 
         replacements = [].concat(variableReplacements, importReplacements);
 
-        grunt.log.debug('effective string-replace replacements:').debug(stringify(replacements));
+        grunt.log.debug('effective string-replace replacements:').debug(util.stringify(replacements));
 
         return replacements;
     };
@@ -30,17 +33,17 @@ exports.init = function (grunt) {
             from = v.from,
             to = v.to;
 
-        if (isUndefined(name) && isUndefined(from)) {
+        if (util.isUndefined(name) && util.isUndefined(from)) {
             grunt.log.error().error('one of "name" or "from" must be defined in a variable replacement');
             return false;
         }
 
-        if (!isUndefined(name) && !isString(name) && !isRegex(name)) {
+        if (!util.isUndefined(name) && !util.isString(name) && !util.isRegex(name)) {
             grunt.log.error().error('"name" must be a string or a regex in a variable replacement');
             return false;
         }
 
-        if (isUndefined(to)) {
+        if (util.isUndefined(to)) {
             grunt.log.error().error('"to" must be defined in a variable replacement');
             return false;
         }
@@ -50,11 +53,10 @@ exports.init = function (grunt) {
         return {
             pattern: pattern,
             replacement: function (match, p1, p2, p3) {
-
                 grunt.log
                     .debug('matching variable replacement'.bold)
-                    .debug('match: ' + match['cyan'])
-                    .debug('captured groups: ' + grunt.log.wordlist([p1, p2, p3]));
+                    .debug(('match=' + match).cyan)
+                    .debug(('captured groups=' + grunt.log.wordlist([p1, p2, p3])).cyan);
 
                 return p1 + to + p3;
             }
@@ -66,14 +68,14 @@ exports.init = function (grunt) {
 
         grunt.verbose.writeln('building variable replacement pattern with: ' + ('name=' + name + ', from=' + from + ', to=' + to).cyan);
 
-        if (isUndefined(name)) {
+        if (util.isUndefined(name)) {
             name = '\\S+'; // match at least one non-whitespace character
-        } else if (isString(name)) {
-            name = regexEscape(name);
-        } else if (isRegex(name)) {
+        } else if (util.isString(name)) {
+            name = util.regexify(name);
+        } else if (util.isRegex(name)) {
             name = name.source;
         }
-        from = from ? regexEscape(from) : '[^\\s"\';!]*';
+        from = from ? util.regexify(from) : '[^\\s"\';!]*';
 
         grunt.log.debug('effective variable replacement params: ' + ('name=' + name + ', from=' + from + ', to=' + to).cyan);
 
@@ -100,7 +102,7 @@ exports.init = function (grunt) {
             from = i.from,
             to = i.to;
 
-        if ((isUndefined(from) || !isString(from)) || (isUndefined(to) || !isString(to))) {
+        if ((util.isUndefined(from) || !util.isString(from)) || (util.isUndefined(to) || !util.isString(to))) {
             grunt.log.error().error('both "from" and "to" must be defined and of type string in an import replacement');
             return false;
         }
@@ -115,7 +117,7 @@ exports.init = function (grunt) {
 
     function buildImportReplacementPattern(from) {
         var patternSegments;
-        from = regexEscape(from);
+        from = util.regexify(from);
 
         patternSegments = [
             /**/    '^',                                                // start line
@@ -163,31 +165,6 @@ exports.init = function (grunt) {
             });
         }
         return replacements;
-    }
-
-    function regexEscape(str) {
-        return (str + '').replace(/(["'\*\.\-\?\$\{}])/g, '\\$1');
-    }
-
-    function stringify(json) {
-        return JSON.stringify(json, function (key, val) {
-            if (isRegex(val)) {
-                return val.source;
-            }
-            return val;
-        }, 2);
-    }
-
-    function isString(val) {
-        return typeof val === 'string';
-    }
-
-    function isRegex(val) {
-        return val instanceof RegExp;
-    }
-
-    function isUndefined(val) {
-        return typeof val === 'undefined';
     }
 
     return exports;

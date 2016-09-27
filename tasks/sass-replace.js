@@ -10,7 +10,8 @@ module.exports = function (grunt) {
     'use strict';
 
     var path = require('path'),
-        sassReplace = require('./lib/main').init(grunt);
+        util = require(path.resolve(__dirname, './lib/util')),
+        sassReplace = require(path.resolve(__dirname, './lib/main')).init(grunt);
 
     // load 3rd party tasks
     grunt.task.loadTasks(path.resolve(__dirname, '../node_modules/grunt-string-replace/tasks'));
@@ -18,51 +19,37 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('sass-replace', 'replaces sass values', function () {
         var scssFiles,
             replacements,
+            isScssFilesValid,
+            isReplacementsValid,
             files = this.files,
             options = this.options();
 
 
-        if (!files || !files.length) {
-            grunt.fail.fatal('no files passed, aborting.');
-        }
+        validate(files, 'no files passed.');
 
-        if (!options || isEmptyObject(options)) {
-            grunt.fail.fatal('no options passed, aborting.');
-        }
-
-        if (options && (!options.variables || !options.variables.length) && (!options.imports || !options.imports.length)) {
-            grunt.fail.warn('options must contain "variables", "imports", or both. aborting.');
+        if (util.isEmpty(options)) {
+            grunt.fail.warn('no options passed.');
+        } else if (util.isEmpty(options.variables) && util.isEmpty(options.imports)) {
+            grunt.fail.warn('options must contain "variables", "imports", or both.');
         }
 
         scssFiles = files.filter(function (file) {
             var src = file.src,
                 dest = file.dest,
-                isSrcValid = src && src.length && src.filter(isScssFile).length,
-                isDestValid = dest && isScssFile(dest);
-            if (!isSrcValid) {
-                grunt.verbose.or.writeln(('src [' + src + '] is not an scss file, it will be excluded.').yellow.bold);
-            }
-            if (!isDestValid) {
-                grunt.verbose.or.writeln(('dest [' + dest + '] is not an scss file, it will be excluded.').yellow.bold);
-            }
+                isSrcValid = !util.isEmpty(src) && src.filter(util.isScssFile).length,
+                isDestValid = !util.isEmpty(dest) && util.isScssFile(dest);
             return isSrcValid && isDestValid;
         });
 
-        if (scssFiles && scssFiles.length) {
-            grunt.log.ok('scss files found in passed files.');
-        }else {
-            grunt.fail.warn('no scss files found in passed files, aborting.');
-        }
+        isScssFilesValid = validate(scssFiles, 'no scss files found in passed files.',
+            '[' + scssFiles.length + '] scss files found in [' + files.length + '] passed files.');
 
         replacements = sassReplace.asStringReplacements(options);
-        if (replacements) {
-            grunt.log.ok('replacements resolved.');
-        } else {
-            grunt.fail.warn('failed to resolve replacements, aborting.');
-        }
 
-        // check that the required parameters are available, to avoid writing files when running with --force
-        if (scssFiles && replacements) {
+        isReplacementsValid = validate(replacements, 'failed to resolve replacements.',
+            'replacements resolved successfully.');
+
+        if (isScssFilesValid && isReplacementsValid) {
             grunt.log.writeln('running string-replace task.');
             grunt.config.set('string-replace', {
                 sass: {
@@ -77,26 +64,14 @@ module.exports = function (grunt) {
         }
     });
 
-    function isEmptyObject(obj) {
-        return !hasProps(obj);
-    }
-
-    function hasProps(obj) {
-        for (var p in obj) {
-            return true;
+    function validate(value, invalidMessage, validMessage) {
+        var result = !util.isEmpty(value);
+        if (result) {
+            grunt.fail.warn(invalidMessage);
+        } else if (validMessage) {
+            grunt.log.ok(validMessage);
         }
-    }
-
-    function isScssFile(path) {
-        return hasExtension(path, 'scss');
-    }
-
-    function hasExtension(path, ext) {
-        return endsWith(path, '.' + ext);
-    }
-
-    function endsWith(str, ending) {
-        return str.indexOf(ending) === str.length - ending.length;
+        return result;
     }
 
 };
