@@ -76,8 +76,8 @@ The [`to`][5] field is mandatory, and either [`from`][6], [`name`][7] or both ca
 When both `name` and `from` are used, they both apply as filters. As `name` can be passed as a string *or* as a regular 
 expression, it presents two common use cases:
 
-- passing both fields as strings can be used to only replace values of duplicate variable declarations, e.g. a 
-variable overriding a color in a specific file.
+- passing both fields as strings can be used to replace values in duplicate variable declarations, e.g. a 
+variable overriding a variable with the same name in another file.
 - passing a string to `from` and a regular expression to `name` can be used to achieve finer filtering, matching
 variables which have a certain value, by several names.
 
