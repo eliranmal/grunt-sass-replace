@@ -58,7 +58,7 @@ grunt.initConfig({
 <sup>
 Type: `Array<Object>`  
 Default value: none  
-Mandatory: either this or the `imports` option must be set
+Mandatory: either this or the [`imports`][4] option must be set
 </sup>
 
 A collection of instructions for replacing variable values.
@@ -175,3 +175,4 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 [1]: http://gruntjs.com/
 [2]: http://gruntjs.com/getting-started
 [3]: http://gruntjs.com/sample-gruntfile
+[4]: #optionsimports
