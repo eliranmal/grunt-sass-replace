@@ -39,6 +39,14 @@ var util = module.exports = {
         return typeof val === 'string';
     },
 
+    isNumber: function (val) {
+        return !isNaN(val) && typeof val === 'number';
+    },
+
+    isBoolean: function (val) {
+        return typeof val === 'boolean';
+    },
+
     isRegex: function (val) {
         return val instanceof RegExp;
     },

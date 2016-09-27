@@ -34,17 +34,22 @@ exports.init = function (grunt) {
             to = v.to;
 
         if (util.isUndefined(name) && util.isUndefined(from)) {
-            grunt.log.error().error('one of "name" or "from" must be defined in a variable replacement');
+            grunt.log.error().error('one of "name" or "from" must be defined in a variable replacement instruction');
             return false;
         }
 
         if (!util.isUndefined(name) && !util.isString(name) && !util.isRegex(name)) {
-            grunt.log.error().error('"name" must be a string or a regex in a variable replacement');
+            grunt.log.error().error('"name" must be a string or a regex in a variable replacement instruction');
+            return false;
+        }
+
+        if (!util.isUndefined(from) && !util.isString(from) && !util.isNumber(from)&& !util.isBoolean(from)) {
+            grunt.log.error().error('"from" must be a string, a number or a boolean in a variable replacement instruction');
             return false;
         }
 
         if (util.isUndefined(to)) {
-            grunt.log.error().error('"to" must be defined in a variable replacement');
+            grunt.log.error().error('"to" must be defined in a variable replacement instruction');
             return false;
         }
 
