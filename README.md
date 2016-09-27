@@ -55,26 +55,33 @@ grunt.initConfig({
 ### Options
 
 #### options.variables
-Type: `Array<Object>`
-Default value: none.
+
+*Type: `Array<Object>`.*  
+*Default value: none.*
 
 A collection of instructions for replacing variable values. Either this or the `imports` option must be set.
 
-##### variableInstruction
+##### VariableInstruction
 
-###### variableInstruction.name
-Type: `String|RegExp`
-Default value: `/\S+/` (match at least one non-whitespace character).
+An object representing a single instruction in the `options.variables` collection.
 
-The variable name as a string, without the leading `$`, e.g. `my-var` will match `$my-var: "foo"`.
+###### VariableInstruction.name
+*Type: `String|RegExp`.*  
+*Default value: `/\S+/` (match at least one non-whitespace character).*
 
-RegExp can also be used, in its literal form or as a `RegExp` instance, e.g. 
-`/my[-_]?[Vv]ar/` will match `$my-var: "foo"`, `$my_var: "foo"` and `$myVar: "foo"`.
+The variable name for lookup, without the leading `$`.
+ 
+When a string is passed, the literal value is searched, e.g. `my-var` will match `$my-var: "foo"`.
+
+A regular expression can be passed in its literal form or as a `RegExp` instance, e.g. 
+`/my[-_]?[Vv]ar/` or `new RegExp('my[-_]?[Vv]ar')` will match `$my-var: "foo"`, `$my_var: "foo"` and `$myVar: "foo"`.
+
+When using `RegExp` instance, only its `source` is used for the lookup (flags are ignored).
 
 
 #### options.imports
-Type: `Array<Object>`
-Default value: none.
+*Type: `Array<Object>`.*  
+*Default value: none.*
 
 A collection of instructions for replacing import paths. Either this or the `variables` option must be set.
 
