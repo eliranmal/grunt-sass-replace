@@ -99,16 +99,17 @@ When using a `RegExp` instance, only its source is used for the lookup (flags ar
 
 ###### VariableInstruction.from
 <sup>
-**Type:** `*`  
+**Type:** `String|Number|Boolean`  
 **Default value:** none  
 **Mandatory:** either this or the [`name`][7] field must be set
 </sup>
 
 The variable's current value for lookup.
 
-When replacing strings with strings, e.g. `$my-var: "foo"` &rarr; `$my-var: "bar"`, the value don't need to be surrounded 
-with double quotes, however if the value _is_ surrounded, make sure you surround the value of [`to`][5] as well.
-Just to be clear:
+When replacing variable values of type string, e.g. `$my-var: "foo"` &rarr; `$my-var: "bar"`, the variable value's 
+surrounding double quotes may be omitted from this field's value, as they will be captured and passed on to the replacement.  
+However, it is advised to prefer the explicit notation and always surround string values with double quotes, for better 
+readability and to avoid confusion or unexpected behavior.
 
 :+1:  
 ```javascript
@@ -116,17 +117,13 @@ Just to be clear:
     from: '"foo"',
     to: '"bar"'
   },
-  {
-    from: 'foo',
-    to: 'bar'
-  },
   ...
 ```
 
 :-1:  
 ```javascript
   {
-    from: '"foo"',
+    from: 'foo',
     to: 'bar'
   },
   ...
