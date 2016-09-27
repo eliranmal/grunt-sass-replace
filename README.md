@@ -202,4 +202,4 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 [5]: #variableinstructionto
 [6]: #variableinstructionfrom
 [7]: #variableinstructionname
-[4]: #optionsvariables
+[8]: #optionsvariables
