@@ -85,7 +85,7 @@ variables which have a certain value, by several names.
 <sup>
 Type: `String|RegExp`  
 Default value: `/\S+/` (match at least one non-whitespace character)  
-Mandatory: either this or the `from` field must be set
+Mandatory: either this or the [`from`][6] field must be set
 </sup>
 
 The variable name for lookup, without the leading `$`.
