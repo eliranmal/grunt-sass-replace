@@ -119,11 +119,11 @@ A new value for the matched variable.
 
 See [note on using double quotes when replacing string values][9].
 
-<sub>
-###### Note on replacing string values
+##### Note on replacing string values
 
 When replacing variable values of type string, e.g. `$my-var: "foo"` &rarr; `$my-var: "bar"`, the variable value's 
-surrounding double quotes may be omitted from this field's value, as they will be captured and passed on to the replacement.  
+surrounding double quotes may be omitted from the `from`/`to` field's value, as they will be captured and passed on to 
+the replacement.  
 However, it is advised to prefer the explicit notation and always surround string values with double quotes, for better 
 readability and to avoid confusion or unexpected behavior.
 
@@ -144,7 +144,7 @@ readability and to avoid confusion or unexpected behavior.
   },
   ...
 ```
-</sub>
+
 
 #### options.imports
 <sup>
