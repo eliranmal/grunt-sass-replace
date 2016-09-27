@@ -71,7 +71,7 @@ Mandatory: yes, at least one instruction must be passed
 </sup>
 
 An object representing a single instruction in the `options.variables` collection.  
-The `to` field is mandatory, and either `from`, `name` or both can be used to filter the lookup.
+The [`to`][5] field is mandatory, and either [`from`][6], [`name`][7] or both can be used to filter the lookup.
 
 When both `name` and `from` are used, they both apply as filters. As `name` can be passed as a string *or* as a regular 
 expression, it presents two common use cases:
@@ -176,3 +176,6 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 [2]: http://gruntjs.com/getting-started
 [3]: http://gruntjs.com/sample-gruntfile
 [4]: #optionsimports
+[5]: #variableinstructionto
+[6]: #variableinstructionfrom
+[7]: #variableinstructionname
