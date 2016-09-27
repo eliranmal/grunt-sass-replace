@@ -64,6 +64,11 @@ A collection of instructions for replacing variable values. Either this or the `
 Type: `String|RegExp`
 Default value: `/\S+/` (match at least one non-whitespace character).
 
+The variable name as a string, without the leading `$`, e.g. `my-var` will match `$my-var: "foo"`.
+
+RegExp can also be used, in its literal form or as a `RegExp` instance, e.g. 
+`/my[-_]?[Vv]ar/` will match `$my-var: "foo"`, `$my_var: "foo"` and `$myVar: "foo"`.
+
 
 #### options.imports
 Type: `Array<Object>`
