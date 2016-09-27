@@ -101,16 +101,42 @@ When using a `RegExp` instance, only its source is used for the lookup (flags ar
 <sup>
 **Type:** `*`  
 **Default value:** none  
-**Mandatory:** either this or the `name` field must be set
+**Mandatory:** either this or the [`name`][7] field must be set
 </sup>
 
-TODO...
+The variable's current value for lookup.
+
+When replacing strings with strings, e.g. `$my-var: "foo" -> $my-var: "bar"`, the value don't need to be surrounded 
+with double quotes, however if the value _is_ surrounded, make sure you surround the value of [`to`][5] as well.
+Just to be clear:
+
+:+1:  
+```json
+  {
+    from: '"foo"',
+    to: '"bar"'
+  },
+  {
+    from: 'foo',
+    to: 'bar'
+  },
+  ...
+```
+
+:-1:  
+```json
+  {
+    from: '"foo"',
+    to: 'bar'
+  },
+  ...
+```
 
 ###### VariableInstruction.to
 <sup>
 **Type:** `*`  
 **Default value:** none  
-**Mandatory:** either this or the `name` field must be set
+**Mandatory:** yes
 </sup>
 
 TODO...
@@ -120,7 +146,7 @@ TODO...
 <sup>
 **Type:** `Array<Object>`  
 **Default value:** none  
-**Mandatory:** either this or the `variables` option must be set
+**Mandatory:** either this or the [`variables`][8] option must be set
 </sup>
 
 A collection of instructions for replacing import paths.
@@ -179,3 +205,4 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 [5]: #variableinstructionto
 [6]: #variableinstructionfrom
 [7]: #variableinstructionname
+[4]: #optionsvariables

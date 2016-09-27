@@ -42,8 +42,8 @@ module.exports = function (grunt) {
                 options: {
                     variables: [
                         {
-                            from: 'foo',
-                            to: 'bar'
+                            from: '"foo"',
+                            to: '"bar"'
                         },
                         {
                             from: 10,
@@ -145,7 +145,7 @@ module.exports = function (grunt) {
                     variables: [
                         {
                             name: new RegExp('my[-_]?[Vv]ar'),
-                            from: "foo",
+                            from: 'foo',
                             to: 1000000000000
                         },
                         {
