@@ -119,6 +119,8 @@ A new value for the matched variable.
 
 See [note on using double quotes when replacing string values][9].
 
+---
+
 ##### Note on replacing string values
 
 When replacing variable values of type string, e.g. `$my-var: "foo"` &rarr; `$my-var: "bar"`, the variable value's 
