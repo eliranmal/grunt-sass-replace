@@ -56,18 +56,18 @@ grunt.initConfig({
 
 #### options.variables
 <sup>
-Type: `Array<Object>`  
-Default value: none  
-Mandatory: either this or the [`imports`][4] option must be set
+**Type:** `Array<Object>`  
+**Default value:** none  
+**Mandatory:** either this or the [`imports`][4] option must be set
 </sup>
 
 A collection of instructions for replacing variable values.
 
 ##### VariableInstruction
 <sup>
-Type: `Object`  
-Default value: none  
-Mandatory: yes, at least one instruction must be passed
+**Type:** `Object`  
+**Default value:** none  
+**Mandatory:** yes, at least one instruction must be passed
 </sup>
 
 An object representing a single instruction in the `options.variables` collection.  
@@ -83,9 +83,9 @@ variables which have a certain value, by several names.
 
 ###### VariableInstruction.name
 <sup>
-Type: `String|RegExp`  
-Default value: `/\S+/` (match at least one non-whitespace character)  
-Mandatory: either this or the [`from`][6] field must be set
+**Type:** `String|RegExp`  
+**Default value:** `/\S+/` (match at least one non-whitespace character)  
+**Mandatory:** either this or the [`from`][6] field must be set
 </sup>
 
 The variable name for lookup, without the leading `$`.
@@ -99,18 +99,18 @@ When using a `RegExp` instance, only its source is used for the lookup (flags ar
 
 ###### VariableInstruction.from
 <sup>
-Type: `*`  
-Default value: none  
-Mandatory: either this or the `name` field must be set
+**Type:** `*`  
+**Default value:** none  
+**Mandatory:** either this or the `name` field must be set
 </sup>
 
 TODO...
 
 ###### VariableInstruction.to
 <sup>
-Type: `*`  
-Default value: none  
-Mandatory: either this or the `name` field must be set
+**Type:** `*`  
+**Default value:** none  
+**Mandatory:** either this or the `name` field must be set
 </sup>
 
 TODO...
@@ -118,9 +118,9 @@ TODO...
 
 #### options.imports
 <sup>
-Type: `Array<Object>`  
-Default value: none  
-Mandatory: either this or the `variables` option must be set
+**Type:** `Array<Object>`  
+**Default value:** none  
+**Mandatory:** either this or the `variables` option must be set
 </sup>
 
 A collection of instructions for replacing import paths.
