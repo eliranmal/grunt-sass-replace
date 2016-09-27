@@ -120,9 +120,9 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            'variables_regex-name': {
+            'variables_regex-name-to': {
                 files: {
-                    'tmp/variables/regex-name.scss': 'test/fixtures/variables.scss'
+                    'tmp/variables/regex-name-to.scss': 'test/fixtures/variables.scss'
                 },
                 options: {
                     variables: [
@@ -132,6 +132,25 @@ module.exports = function (grunt) {
                         },
                         {
                             name: /my[-_]?[Nn]um[-_]?[Vv]ar/,
+                            to: -1
+                        }
+                    ]
+                }
+            },
+            'variables_regex-name-from-to': {
+                files: {
+                    'tmp/variables/regex-name-from-to.scss': 'test/fixtures/variables.scss'
+                },
+                options: {
+                    variables: [
+                        {
+                            name: new RegExp('my[-_]?[Vv]ar'),
+                            from: "foo",
+                            to: 1000000000000
+                        },
+                        {
+                            name: /my[-_]?[Nn]um[-_]?[Vv]ar/,
+                            from: 10,
                             to: -1
                         }
                     ]

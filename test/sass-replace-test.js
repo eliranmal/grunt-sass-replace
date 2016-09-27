@@ -59,12 +59,22 @@ exports['sass-replace'] = {
         test.done();
     },
 
-    variablesRegexName: function (test) {
+    variablesRegexNameTo: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('tmp/variables/regex-name.scss');
-        var expected = grunt.file.read('test/expected/variables/regex-name.scss');
+        var actual = grunt.file.read('tmp/variables/regex-name-to.scss');
+        var expected = grunt.file.read('test/expected/variables/regex-name-to.scss');
         test.equal(actual, expected, 'should replace sass variable values, filtering by variable name as regex');
+
+        test.done();
+    },
+
+    variablesRegexNameFromTo: function (test) {
+        test.expect(1);
+
+        var actual = grunt.file.read('tmp/variables/regex-name-from-to.scss');
+        var expected = grunt.file.read('test/expected/variables/regex-name-from-to.scss');
+        test.equal(actual, expected, 'should replace sass variable values, filtering by variable name as regex, and by variable value');
 
         test.done();
     },
