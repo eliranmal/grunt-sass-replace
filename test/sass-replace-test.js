@@ -109,12 +109,37 @@ exports['sass-replace'] = {
         test.done();
     },
 
-    // todo - add tests for invalid file extensions
+    invalidFileExtensionSrc: function (test) {
+        test.expect(1);
+
+        var isDestFileExists = grunt.file.exists('tmp/mixed/invalid-ext-src.scss');
+        test.equal(isDestFileExists, false, 'should not write any files');
+
+        test.done();
+    },
+
+    invalidFileExtensionDest: function (test) {
+        test.expect(1);
+
+        var isDestFileExists = grunt.file.exists('tmp/mixed/invalid-ext-dest.md');
+        test.equal(isDestFileExists, false, 'should not write any files');
+
+        test.done();
+    },
+
+    invalidFileExtensionSrcDest: function (test) {
+        test.expect(1);
+
+        var isDestFileExists = grunt.file.exists('tmp/mixed/invalid-ext-src-dest.md');
+        test.equal(isDestFileExists, false, 'should not write any files');
+
+        test.done();
+    },
 
     missingOptions: function (test) {
         test.expect(1);
 
-        var isDestFileExists = grunt.file.exists('tmp/mixed/noop.scss');
+        var isDestFileExists = grunt.file.exists('tmp/mixed/no-options.scss');
         test.equal(isDestFileExists, false, 'should not write any files');
 
         test.done();

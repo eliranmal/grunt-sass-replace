@@ -303,9 +303,9 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            'invalid_files_wrong_ext_src': {
+            'invalid_file_ext_src': {
                 files: {
-                    'tmp/mixed/all.scss': 'test/fixtures/run.sh'
+                    'tmp/mixed/invalid-ext-src.scss': 'test/fixtures/doc.md'
                 },
                 options: {
                     variables: [
@@ -316,9 +316,9 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            'invalid_files_wrong_ext_dest': {
+            'invalid_file_ext_dest': {
                 files: {
-                    'tmp/mixed/doc.md': 'test/fixtures/mixed.scss'
+                    'tmp/mixed/invalid-ext-dest.md': 'test/fixtures/mixed.scss'
                 },
                 options: {
                     variables: [
@@ -329,9 +329,9 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            'invalid_files_wrong_ext_src_dest': {
+            'invalid_file_ext_src_dest': {
                 files: {
-                    'tmp/mixed/doc.md': 'test/fixtures/doc.md'
+                    'tmp/mixed/invalid-ext-src-dest.md': 'test/fixtures/doc.md'
                 },
                 options: {
                     variables: [
@@ -344,7 +344,7 @@ module.exports = function (grunt) {
             },
             'missing_options': {
                 files: {
-                    'tmp/mixed/noop.scss': 'test/fixtures/mixed.scss'
+                    'tmp/mixed/no-options.scss': 'test/fixtures/mixed.scss'
                 }
             }
         },
