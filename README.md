@@ -93,9 +93,9 @@ When using `RegExp` instance, only its `source` is used for the lookup (flags ar
 
 ###### VariableInstruction.from
 <sup>
-*Type: `&ast;`.*  
-*Default value: none.*  
-*Mandatory: either this or the `name` field must be set.*
+Type: `*`.  
+Default value: none.  
+Mandatory: either this or the `name` field must be set.
 </sup>
 
 TODO...
@@ -104,17 +104,6 @@ TODO...
 *__Type:__ `&ast;`.*  
 *__Default value:__ `/\S+/`.*  
 *__Mandatory:__ yes.*
-
-TODO...
-
-###### VariableInstruction.to
-_**Type:** `&ast;`._  
-_**Type:** `\*`._  
-<sup>
-*Type: `a`.*  
-*Type: `a`.*  
-</sup>
-<sup>*Type: `a`.*  </sup>
 
 TODO...
 
