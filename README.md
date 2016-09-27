@@ -92,16 +92,29 @@ e.g. `/my[-_]?[Vv]ar/` or `new RegExp('my[-_]?[Vv]ar')` will both match `$my-var
 When using `RegExp` instance, only its `source` is used for the lookup (flags are ignored).
 
 ###### VariableInstruction.from
-<sup>*Type: `Any`.*</sup>  
-<sup>*Default value: none.*</sup>  
-<sup>*Mandatory: either this or the `name` field must be set.*</sup>
+<sup>
+*Type: `&ast;`.*  
+*Default value: none.*  
+*Mandatory: either this or the `name` field must be set.*
+</sup>
 
 TODO...
 
 ###### VariableInstruction.to
-*__Type:__ `Any`.*  
+*__Type:__ `&ast;`.*  
 *__Default value:__ `/\S+/`.*  
 *__Mandatory:__ yes.*
+
+TODO...
+
+###### VariableInstruction.to
+_**Type:** `&ast;`._  
+_**Type:** `\*`._  
+<sup>
+*Type: `a`.*  
+*Type: `a`.*  
+</sup>
+<sup>*Type: `a`.*  </sup>
 
 TODO...
 
