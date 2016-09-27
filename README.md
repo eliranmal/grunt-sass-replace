@@ -104,7 +104,8 @@ When using a `RegExp` instance, only its source is used for the lookup (flags ar
 **Mandatory:** either this or the [`name`][7] field must be set
 </sup>
 
-The variable's current value for lookup.
+The variable's current value for lookup. Note that `!default` statements are not captured for replacement, and are 
+kept as is ([post an issue][12] if you want to be able to alter `!default` statements as well).
 
 See [note on using double quotes when replacing string values][9].
 
@@ -155,7 +156,38 @@ readability and to avoid confusion or unexpected behavior.
 **Mandatory:** either this or the [`variables`][8] option must be set
 </sup>
 
-A collection of instructions for replacing import paths.
+A collection of instructions for replacing `@import` paths.
+
+##### ImportInstruction
+<sup>
+**Type:** `Object`  
+**Default value:** none  
+**Mandatory:** yes, at least one instruction must be passed
+</sup>
+
+An object representing a single instruction in the `options.imports` collection.  
+Both [`from`][10] and [`to`][11] fields are mandatory.
+
+###### ImportInstruction.from
+<sup>
+**Type:** `String`  
+**Default value:** none  
+**Mandatory:** yes
+</sup>
+
+The import path(s) current value for lookup. Captures only the path contents, i.e. everything between the surrounding 
+quotes, or inside a `url()`.
+
+Capturing of everything after the `@import` is currently not supported ([post an issue][12] if you find it useful).
+
+###### ImportInstruction.to
+<sup>
+**Type:** `String`  
+**Default value:** none  
+**Mandatory:** yes
+</sup>
+
+A new value for the matched import path(s).
 
 
 ### Usage Examples
@@ -213,3 +245,6 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 [7]: #variableinstructionname
 [8]: #optionsvariables
 [9]: #note-on-replacing-string-values
+[10]: #importinstructionfrom
+[11]: #importinstructionto
+[12]: https://github.com/eliranmal/grunt-sass-replace/issues

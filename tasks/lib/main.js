@@ -118,7 +118,7 @@ exports.init = function (grunt) {
             to = i.to;
 
         if ((util.isUndefined(from) || !util.isString(from)) || (util.isUndefined(to) || !util.isString(to))) {
-            grunt.log.error().error('both "from" and "to" must be defined and of type string in an import replacement');
+            grunt.log.error().error('both "from" and "to" must be defined and of type string in an import replacement instruction');
             return false;
         }
 
