@@ -61,7 +61,7 @@ grunt.initConfig({
 **Mandatory:** either this or [`options.imports`][4] must be set
 </sup>
 
-A collection of `VariableInstruction`s to describe replacements of sass variable values.
+A collection of [`VariableInstruction`][13]s to describe replacements of sass variable values.
 
 ##### VariableInstruction
 <sup>
@@ -156,7 +156,7 @@ readability and to avoid confusion or unexpected behavior.
 **Mandatory:** either this or [`options.variables`][8] must be set
 </sup>
 
-A collection of `ImportInstruction`s to describe replacements of `@import` paths.
+A collection of [`ImportInstruction`][14]s to describe replacements of `@import` paths.
 
 ##### ImportInstruction
 <sup>
@@ -377,3 +377,5 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 [10]: #importinstructionfrom
 [11]: #importinstructionto
 [12]: https://github.com/eliranmal/grunt-sass-replace/issues
+[13]: #variableinstruction
+[14]: #importinstruction
