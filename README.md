@@ -259,8 +259,8 @@ grunt.initConfig({
       variables: [
         {
           name: 'my-var',
-          from: 'foo',
-          to: 'bar'
+          from: '"foo"',
+          to: '"bar"'
         }
       ]
     }
