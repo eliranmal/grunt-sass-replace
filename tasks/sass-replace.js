@@ -65,13 +65,17 @@ module.exports = function (grunt) {
     });
 
     function validate(value, invalidMessage, validMessage) {
-        var result = !util.isEmpty(value);
-        if (result) {
-            grunt.fail.warn(invalidMessage);
-        } else if (validMessage) {
-            grunt.log.ok(validMessage);
+        var isValid = !util.isEmpty(value);
+        if (isValid) {
+            if (validMessage) {
+                grunt.log.ok(validMessage);
+            }
+        } else {
+            if (invalidMessage) {
+                grunt.fail.warn(invalidMessage);
+            }
         }
-        return result;
+        return isValid;
     }
 
 };
