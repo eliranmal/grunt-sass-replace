@@ -1,8 +1,8 @@
 # grunt-sass-replace
 
-[![NPM][16]][17]
-
 > replaces sass values with grunt
+
+[![NPM][16]][17]
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
