@@ -351,7 +351,7 @@ functionality, lint and test your code.
 To allow testing of negative flows, the tests are run via npm, which is running the main task with the `--force` flag.
 To run the tests, run:
 
-```sh
+```shell
 npm run test
 ```
 
