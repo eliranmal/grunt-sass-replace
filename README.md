@@ -247,7 +247,7 @@ grunt.initConfig({
 });
 ```
 
-#### Replacing variables by name and old value
+#### Replacing variables by name and current value
 
 ```js
 grunt.initConfig({
