@@ -355,7 +355,7 @@ npm run test
 
 ## Release History
 
-_(Nothing yet)_
+_See [the changelog][15]._
 
 ## License
 
@@ -379,3 +379,9 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 [12]: https://github.com/eliranmal/grunt-sass-replace/issues
 [13]: #variableinstruction
 [14]: #importinstruction
+[15]: CHANGELOG.md
+
+<!-- npm badge preparations
+[16]: https://img.shields.io/npm/v/grunt-sass-replace.svg?style=flat-square
+[17]: https://www.npmjs.com/package/grunt-sass-replace
+-->
