@@ -342,12 +342,23 @@ grunt.initConfig({
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed 
+functionality, lint and test your code.
+
+To allow testing of negative flows, the tests are run via npm, which is running the main task with the `--force` flag.
+To run the tests, run:
+
+```sh
+npm run test
+```
 
 ## Release History
+
 _(Nothing yet)_
 
 ## License
+
 Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 
 
