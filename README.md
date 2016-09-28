@@ -355,7 +355,7 @@ npm run test
 
 ## Release History
 
-_See [the changelog][15]._
+See [the changelog][15].
 
 ## License
 
