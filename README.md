@@ -1,6 +1,8 @@
 # grunt-sass-replace
 
-> replaces sass values
+[![NPM][16]][17]
+
+> replaces sass values with grunt
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -380,8 +382,5 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 [13]: #variableinstruction
 [14]: #importinstruction
 [15]: CHANGELOG.md
-
-<!-- npm badge preparations
 [16]: https://img.shields.io/npm/v/grunt-sass-replace.svg?style=flat-square
 [17]: https://www.npmjs.com/package/grunt-sass-replace
--->

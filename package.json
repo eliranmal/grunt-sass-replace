@@ -1,6 +1,6 @@
 {
   "name": "grunt-sass-replace",
-  "description": "replaces sass declarations",
+  "description": "replaces sass values with grunt",
   "version": "0.1.0",
   "homepage": "https://github.com/eliranmal/grunt-sass-replace",
   "author": {
