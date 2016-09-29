@@ -57,20 +57,18 @@ grunt.initConfig({
 ### Options
 
 #### options.variables
-<sup>
+
 **Type:** `Array<Object>`  
 **Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
+**Mandatory:** either this or [`options.imports`][4] must be set  
 
 A collection of [`VariableInstruction`][13]s to describe replacements of sass variable values.
 
 ##### VariableInstruction
-<sup>
+
 **Type:** `Object`  
 **Default value:** none  
-**Mandatory:** at least one `VariableInstruction` must be available on the [`options.variables`][8] collection
-</sup>
+**Mandatory:** at least one `VariableInstruction` must be available on the [`options.variables`][8] collection  
 
 An object representing a single instruction in the `options.variables` collection.  
 The [`to`][5] field is mandatory, and either [`from`][6], [`name`][7] or both can be used to filter the lookup.
@@ -84,11 +82,10 @@ variable overriding a variable with the same name in another file.
 variables which have a certain value, by several names.
 
 ###### VariableInstruction.name
-<sup>
+
 **Type:** `String|RegExp`  
 **Default value:** `/\S+/` (match at least one non-whitespace character)  
-**Mandatory:** either this or the [`from`][6] field must be set
-</sup>
+**Mandatory:** either this or the [`from`][6] field must be set  
 
 The variable name for lookup, without the leading `$`.
  
@@ -100,11 +97,10 @@ e.g. `/my[-_]?[Vv]ar/` or `new RegExp('my[-_]?[Vv]ar')` will both match `$my-var
 When using a `RegExp` instance, only its source is used for the lookup (flags are ignored).
 
 ###### VariableInstruction.from
-<sup>
+
 **Type:** `String|Number|Boolean`  
 **Default value:** none  
-**Mandatory:** either this or the [`name`][7] field must be set
-</sup>
+**Mandatory:** either this or the [`name`][7] field must be set  
 
 The variable's current value for lookup. Note that `!default` statements are not captured for replacement, and are 
 kept as is ([post an issue][12] if you want to be able to alter `!default` statements as well).
@@ -112,11 +108,10 @@ kept as is ([post an issue][12] if you want to be able to alter `!default` state
 See [note on using double quotes when replacing string values][9].
 
 ###### VariableInstruction.to
-<sup>
+
 **Type:** `String|Number|Boolean`  
 **Default value:** none  
-**Mandatory:** yes
-</sup>
+**Mandatory:** yes  
 
 A new value for the matched variable.
 
@@ -151,30 +146,27 @@ readability and to avoid confusion or unexpected behavior.
 
 
 #### options.imports
-<sup>
+
 **Type:** `Array<Object>`  
 **Default value:** none  
-**Mandatory:** either this or [`options.variables`][8] must be set
-</sup>
+**Mandatory:** either this or [`options.variables`][8] must be set  
 
 A collection of [`ImportInstruction`][14]s to describe replacements of `@import` paths.
 
 ##### ImportInstruction
-<sup>
+
 **Type:** `Object`  
 **Default value:** none  
-**Mandatory:** at least one `ImportInstruction` must be available on the [`options.imports`][4] collection
-</sup>
+**Mandatory:** at least one `ImportInstruction` must be available on the [`options.imports`][4] collection  
 
 An object representing a single instruction in the `options.imports` collection.  
 Both [`from`][10] and [`to`][11] fields are mandatory.
 
 ###### ImportInstruction.from
-<sup>
+
 **Type:** `String`  
 **Default value:** none  
-**Mandatory:** yes
-</sup>
+**Mandatory:** yes  
 
 The import path(s) current value for lookup. Captures only the path contents, i.e. everything between the surrounding 
 quotes, or inside a `url()`.
@@ -183,11 +175,10 @@ Capturing of everything after the `@import` (including quotes or `url()`s) is cu
 [post an issue][12] if you find it useful. Also, passing regular expressions was not tested, but probably works.
 
 ###### ImportInstruction.to
-<sup>
+
 **Type:** `String`  
 **Default value:** none  
-**Mandatory:** yes
-</sup>
+**Mandatory:** yes  
 
 A new value for the matched import path(s).
 
@@ -365,120 +356,6 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 
 
 
----
-
-##### test github vs npm formatting
-
-
-#### Heading level 4, no superscript
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-
-Normal text  
-<sup>
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-
-#### Heading level 4
-<sup>
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-
-#### Heading level 4 followed by empty line
-
-<sup>
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-
-#### Heading level 4 followed by empty line with markdown line break
-  
-<sup>
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-
-#### Heading level 4 followed by empty line with html line break
-<br/>
-<sup>
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-
-#### Heading level 4 followed by comment
-<!-- comment, yo -->
-<sup>
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-
-#### Heading level 4 followed by paragraph wrapping the superscript text
-<p>
-<sup>
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-</p>
-
-#### Heading level 4 followed by empty line and paragraph wrapping the superscript text
-<p>
-<sup>
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-</p>
-
-#### Heading level 4 followed by empty paragraph
-<p></p>
-<sup>
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-
-Normal text
-<sup>
-**Type:** `Array&lt;Object&gt;`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set
-</sup>
-
-Normal text  
-<sup>
-<b>Type:</b> `Array<Object>`<br/>
-<b>Default value:</b> none<br/>
-<b>Mandatory:</b> either this or [`options.imports`][4] must be set<br/>
-</sup>
-
-Normal text  
-<sup><b>Type:</b> <code>Array&lt;Object&gt;</code></sup><br/>
-<sup><b>Default value:</b> none</sup><br/>
-<sup><b>Mandatory:</b> either this or <a href="#optionsimports"><code>options.imports</code></a> must be set</sup><br/>
-
-Normal text  
-<sup>
-<b>Type:</b> <code>Array&lt;Object&gt;</code><br/>
-<b>Default value:</b> none<br/>
-<b>Mandatory:</b> either this or [<code>options.imports</code>][4] must be set<br/>
-</sup>
-
-Normal text  
-<sup>
-<b>Type:</b> <code>Array<Object></code><br/>
-<b>Default value:</b> none<br/>
-<b>Mandatory:</b> either this or <a href="#optionsimports"><code>options.imports</code></a> must be set<br/>
-</sup>
 
 
 
