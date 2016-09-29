@@ -375,7 +375,7 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 <b>Mandatory:</b> either this or [`options.imports`][4] must be set<br/>
 </sup>
 
-<sup><b>Type:</b> <code>Array<Object></code></sup><br/>
+<sup><b>Type:</b> <code>Array&lt;Object&gt;</code></sup><br/>
 <sup><b>Default value:</b> none</sup><br/>
 <sup><b>Mandatory:</b> either this or <a href="#optionsimports"><code>options.imports</code></a> must be set</sup><br/>
 
