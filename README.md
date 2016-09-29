@@ -369,22 +369,26 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 
 ##### test github vs npm formatting
 
+Normal text
 <sup>
 <b>Type:</b> `Array<Object>`<br/>
 <b>Default value:</b> none<br/>
 <b>Mandatory:</b> either this or [`options.imports`][4] must be set<br/>
 </sup>
 
+Normal text
 <sup><b>Type:</b> <code>Array&lt;Object&gt;</code></sup><br/>
 <sup><b>Default value:</b> none</sup><br/>
 <sup><b>Mandatory:</b> either this or <a href="#optionsimports"><code>options.imports</code></a> must be set</sup><br/>
 
+Normal text
 <sup>
 <b>Type:</b> <code>Array<Object></code><br/>
 <b>Default value:</b> none<br/>
 <b>Mandatory:</b> either this or [<code>options.imports</code>][4] must be set<br/>
 </sup>
 
+Normal text
 <sup>
 <b>Type:</b> <code>Array<Object></code><br/>
 <b>Default value:</b> none<br/>
