@@ -169,7 +169,7 @@ exports.init = function (grunt) {
     function buildReplacements(arr, builder) {
         var replacement,
             replacements = [];
-        if (arr && arr.length > 0) {
+        if (!util.isEmpty(arr)) {
             arr.forEach(function (item) {
                 if (builder) {
                     replacement = builder(item);
