@@ -383,7 +383,7 @@ Normal text
 
 Normal text
 <sup>
-<b>Type:</b> <code>Array<Object></code><br/>
+<b>Type:</b> <code>Array&lt;Object&gt;</code><br/>
 <b>Default value:</b> none<br/>
 <b>Mandatory:</b> either this or [<code>options.imports</code>][4] must be set<br/>
 </sup>
