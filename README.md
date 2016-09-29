@@ -378,6 +378,13 @@ Normal text
 
 Normal text  
 <sup>
+**Type:** `Array&lt;Object&gt;`  
+**Default value:** none  
+**Mandatory:** either this or [`options.imports`][4] must be set
+</sup>
+
+Normal text  
+<sup>
 <b>Type:</b> `Array<Object>`<br/>
 <b>Default value:</b> none<br/>
 <b>Mandatory:</b> either this or [`options.imports`][4] must be set<br/>
