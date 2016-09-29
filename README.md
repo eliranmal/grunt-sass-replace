@@ -122,7 +122,6 @@ A new value for the matched variable.
 
 See [note on using double quotes when replacing string values][9].
 
----
 
 ##### Note on replacing string values
 
@@ -137,7 +136,7 @@ readability and to avoid confusion or unexpected behavior.
   {
     from: '"foo"',
     to: '"bar"'
-  },
+  }
   ...
 ```
 
@@ -146,7 +145,7 @@ readability and to avoid confusion or unexpected behavior.
   {
     from: 'foo',
     to: 'bar'
-  },
+  }
   ...
 ```
 
@@ -364,6 +363,29 @@ See [the changelog][15].
 Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 
 
+
+
+---
+
+##### test github vs npm formatting
+
+<sup>
+<b>Type:</b> `Array<Object>`<br/>
+<b>Default value:</b> none<br/>
+<b>Mandatory:</b> either this or [`options.imports`][4] must be set<br/>
+</sup>
+
+<sup>
+<b>Type:</b> <code>Array<Object></code><br/>
+<b>Default value:</b> none<br/>
+<b>Mandatory:</b> either this or [<code>options.imports</code>][4] must be set<br/>
+</sup>
+
+<sup>
+<b>Type:</b> <code>Array<Object></code><br/>
+<b>Default value:</b> none<br/>
+<b>Mandatory:</b> either this or <a href="#optionsimports"><code>options.imports</code></a> must be set<br/>
+</sup>
 
 
 
