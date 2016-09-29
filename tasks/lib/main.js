@@ -12,6 +12,7 @@ exports.init = function (grunt) {
     var path = require('path'),
         util = require(path.resolve(__dirname, './util'));
 
+
     exports.asStringReplacements = function (options) {
         var replacements,
             variableReplacements = buildReplacements(options.variables, variableReplacementBuilder),
@@ -48,12 +49,12 @@ exports.init = function (grunt) {
             return false;
         }
 
-        if (!util.isUndefined(from) && !util.isString(from) && !util.isNumber(from)&& !util.isBoolean(from)) {
+        if (!util.isUndefined(from) && !util.isString(from) && !util.isNumber(from) && !util.isBoolean(from)) {
             grunt.log.error().error('"from" must be a string, a number or a boolean in a variable replacement instruction');
             return false;
         }
 
-        if (!util.isString(to) && !util.isNumber(to)&& !util.isBoolean(to)) {
+        if (!util.isString(to) && !util.isNumber(to) && !util.isBoolean(to)) {
             grunt.log.error().error('"to" must be a string, a number or a boolean in a variable replacement instruction');
             return false;
         }
@@ -81,7 +82,7 @@ exports.init = function (grunt) {
         if (util.isUndefined(name)) {
             name = '\\S+'; // match at least one non-whitespace character
         } else if (util.isString(name)) {
-            name = util.regexify(name);
+            name = util.asRegexString(name);
         } else if (util.isRegex(name)) {
             name = name.source;
         }
@@ -89,7 +90,7 @@ exports.init = function (grunt) {
         if (util.isUndefined(from)) {
             from = '[^\\s"\';!]*';
         } else {
-            from = util.regexify(from);
+            from = util.asRegexString(from);
         }
 
         grunt.log.debug('effective variable replacement params: ' + ('name=' + name + ', from=' + from + ', to=' + to).cyan);
@@ -132,7 +133,7 @@ exports.init = function (grunt) {
 
     function buildImportReplacementPattern(from) {
         var patternSegments;
-        from = util.regexify(from);
+        from = util.asRegexString(from);
 
         patternSegments = [
             /**/    '^',                                                // start line

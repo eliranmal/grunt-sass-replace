@@ -41,13 +41,11 @@ module.exports = function (grunt) {
             return isSrcValid && isDestValid;
         });
 
-        isScssFilesValid = validate(scssFiles, 'no scss files found in passed files.',
-            '[' + scssFiles.length + '] scss files found in [' + files.length + '] passed files.');
+        isScssFilesValid = validate(scssFiles, 'no scss files found in passed files.');
 
         replacements = sassReplace.asStringReplacements(options);
 
-        isReplacementsValid = validate(replacements, 'failed to resolve replacements.',
-            'replacements resolved successfully.');
+        isReplacementsValid = validate(replacements, 'failed to resolve replacements.');
 
         if (isScssFilesValid && isReplacementsValid) {
             grunt.log.writeln('running string-replace task.');

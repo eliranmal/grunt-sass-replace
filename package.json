@@ -44,10 +44,11 @@
     "import",
     "substitute",
     "string",
-    "regex",
+    "regexp",
     "css"
   ],
   "dependencies": {
+    "escape-string-regexp": "^1.0.5",
     "grunt-string-replace": "^1.3.0"
   }
 }

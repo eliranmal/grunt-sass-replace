@@ -1,3 +1,13 @@
+/*
+ * grunt-sass-replace
+ * https://github.com/eliranmal/grunt-sass-replace
+ *
+ * Copyright (c) 2016 eliranmal
+ * Licensed under the WTFPL license.
+ */
+
+var escapeStringRegexp = require('escape-string-regexp');
+
 var util = module.exports = {
 
     isEmpty: function (val) {
@@ -22,8 +32,8 @@ var util = module.exports = {
         return str.indexOf(term) === str.length - term.length;
     },
 
-    regexify: function (str) {
-        return (str + '').replace(/(["'\*\.\-\?\$\{}])/g, '\\$1');
+    asRegexString: function (str) {
+        return escapeStringRegexp(str + '');
     },
 
     stringify: function (json) {
