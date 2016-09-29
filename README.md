@@ -66,9 +66,9 @@ A collection of [`VariableInstruction`][13]s to describe replacements of sass va
 
 ##### VariableInstruction
 
-_Type: `Object`_  
-_Default value: none_  
-_Mandatory: at least one `VariableInstruction` must be available on the [`options.variables`][8] collection_  
+_**Type:** `Object`_  
+_**Default value:** none_  
+_**Mandatory:** at least one `VariableInstruction` must be available on the [`options.variables`][8] collection_  
 
 An object representing a single instruction in the `options.variables` collection.  
 The [`to`][5] field is mandatory, and either [`from`][6], [`name`][7] or both can be used to filter the lookup.
@@ -83,9 +83,9 @@ variables which have a certain value, by several names.
 
 ###### VariableInstruction.name
 
-**Type:** `String|RegExp`  
-**Default value:** `/\S+/` (match at least one non-whitespace character)  
-**Mandatory:** either this or the [`from`][6] field must be set  
+_**Type:** `String|RegExp`_  
+_**Default value:** `/\S+/` (match at least one non-whitespace character)_  
+_**Mandatory:** either this or the [`from`][6] field must be set_  
 
 The variable name for lookup, without the leading `$`.
  
@@ -98,9 +98,9 @@ When using a `RegExp` instance, only its source is used for the lookup (flags ar
 
 ###### VariableInstruction.from
 
-**Type:** `String|Number|Boolean`  
-**Default value:** none  
-**Mandatory:** either this or the [`name`][7] field must be set  
+_**Type:** `String|Number|Boolean`_  
+_**Default value:** none_  
+_**Mandatory:** either this or the [`name`][7] field must be set_  
 
 The variable's current value for lookup. Note that `!default` statements are not captured for replacement, and are 
 kept as is ([post an issue][12] if you want to be able to alter `!default` statements as well).
@@ -109,9 +109,9 @@ See [note on using double quotes when replacing string values][9].
 
 ###### VariableInstruction.to
 
-**Type:** `String|Number|Boolean`  
-**Default value:** none  
-**Mandatory:** yes  
+_**Type:** `String|Number|Boolean`_  
+_**Default value:** none_  
+_**Mandatory:** yes_  
 
 A new value for the matched variable.
 
@@ -147,26 +147,26 @@ readability and to avoid confusion or unexpected behavior.
 
 #### options.imports
 
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.variables`][8] must be set  
+_**Type:** `Array<Object>`_  
+_**Default value:** none_  
+_**Mandatory:** either this or [`options.variables`][8] must be set_  
 
 A collection of [`ImportInstruction`][14]s to describe replacements of `@import` paths.
 
 ##### ImportInstruction
 
-**Type:** `Object`  
-**Default value:** none  
-**Mandatory:** at least one `ImportInstruction` must be available on the [`options.imports`][4] collection  
+_**Type:** `Object`_  
+_**Default value:** none_  
+_**Mandatory:** at least one `ImportInstruction` must be available on the [`options.imports`][4] collection_  
 
 An object representing a single instruction in the `options.imports` collection.  
 Both [`from`][10] and [`to`][11] fields are mandatory.
 
 ###### ImportInstruction.from
 
-**Type:** `String`  
-**Default value:** none  
-**Mandatory:** yes  
+_**Type:** `String`_  
+_**Default value:** none_  
+_**Mandatory:** yes_  
 
 The import path(s) current value for lookup. Captures only the path contents, i.e. everything between the surrounding 
 quotes, or inside a `url()`.
@@ -176,9 +176,9 @@ Capturing of everything after the `@import` (including quotes or `url()`s) is cu
 
 ###### ImportInstruction.to
 
-**Type:** `String`  
-**Default value:** none  
-**Mandatory:** yes  
+_**Type:** `String`_  
+_**Default value:** none_  
+_**Mandatory:** yes_  
 
 A new value for the matched import path(s).
 
