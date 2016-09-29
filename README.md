@@ -391,6 +391,14 @@ Normal text
 **Mandatory:** either this or [`options.imports`][4] must be set
 </sup>
 
+#### Heading level 4 followed by empty line with line break
+
+<sup>
+**Type:** `Array<Object>`
+**Default value:** none
+**Mandatory:** either this or [`options.imports`][4] must be set
+</sup>
+
 #### Heading level 4 followed by comment
 <!-- comment, yo -->
 <sup>
