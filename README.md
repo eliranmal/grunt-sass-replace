@@ -58,17 +58,17 @@ grunt.initConfig({
 
 #### options.variables
 
-**Type:** `Array<Object>`  
-**Default value:** none  
-**Mandatory:** either this or [`options.imports`][4] must be set  
+_**Type:** `Array<Object>`_  
+_**Default value:** none_  
+_**Mandatory:** either this or [`options.imports`][4] must be set_  
 
 A collection of [`VariableInstruction`][13]s to describe replacements of sass variable values.
 
 ##### VariableInstruction
 
-**Type:** `Object`  
-**Default value:** none  
-**Mandatory:** at least one `VariableInstruction` must be available on the [`options.variables`][8] collection  
+_Type: `Object`_  
+_Default value: none_  
+_Mandatory: at least one `VariableInstruction` must be available on the [`options.variables`][8] collection_  
 
 An object representing a single instruction in the `options.variables` collection.  
 The [`to`][5] field is mandatory, and either [`from`][6], [`name`][7] or both can be used to filter the lookup.
