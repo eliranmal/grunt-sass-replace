@@ -408,7 +408,24 @@ Normal text
 </sup>
 </p>
 
-Normal text  
+#### Heading level 4 followed by empty line and paragraph wrapping the superscript text
+<p>
+<sup>
+**Type:** `Array<Object>`
+**Default value:** none
+**Mandatory:** either this or [`options.imports`][4] must be set
+</sup>
+</p>
+
+#### Heading level 4 followed by empty paragraph
+<p></p>
+<sup>
+**Type:** `Array<Object>`
+**Default value:** none
+**Mandatory:** either this or [`options.imports`][4] must be set
+</sup>
+
+Normal text
 <sup>
 **Type:** `Array&lt;Object&gt;`  
 **Default value:** none  
