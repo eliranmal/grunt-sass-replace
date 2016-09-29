@@ -427,8 +427,8 @@ Normal text
 
 Normal text
 <sup>
-**Type:** `Array&lt;Object&gt;`  
-**Default value:** none  
+**Type:** `Array&lt;Object&gt;`
+**Default value:** none
 **Mandatory:** either this or [`options.imports`][4] must be set
 </sup>
 
