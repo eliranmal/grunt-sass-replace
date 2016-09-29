@@ -394,8 +394,8 @@ Normal text
 #### Heading level 4 followed by empty line with markdown line break
   
 <sup>
-**Type:** `Array<Object>`
-**Default value:** none
+**Type:** `Array<Object>`  
+**Default value:** none  
 **Mandatory:** either this or [`options.imports`][4] must be set
 </sup>
 
