@@ -1,7 +1,7 @@
 {
   "name": "grunt-sass-replace",
   "description": "replaces sass values with grunt",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "homepage": "https://github.com/eliranmal/grunt-sass-replace",
   "author": {
     "name": "eliranmal",
