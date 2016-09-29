@@ -369,6 +369,12 @@ Copyright (c) 2016 Eliran Malka. Licensed under the WTFPL license.
 
 ##### test github vs npm formatting
 
+
+#### Heading level 4, no superscript
+**Type:** `Array<Object>`  
+**Default value:** none  
+**Mandatory:** either this or [`options.imports`][4] must be set
+
 Normal text  
 <sup>
 **Type:** `Array<Object>`  
