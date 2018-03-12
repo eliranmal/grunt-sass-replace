@@ -14,7 +14,7 @@ module.exports = function (grunt) {
         sassReplace = require(path.resolve(__dirname, './lib/main')).init(grunt);
 
     // load 3rd party tasks
-    grunt.task.loadTasks(path.resolve(__dirname, '../node_modules/grunt-string-replace/tasks'));
+    grunt.task.loadTasks(path.resolve(__dirname, '../../grunt-string-replace/tasks'));
 
     grunt.registerMultiTask('sass-replace', 'replaces sass values', function () {
         var scssFiles,
